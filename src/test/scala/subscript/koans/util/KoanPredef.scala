@@ -1,6 +1,6 @@
 package subscript.koans.util
 
-trait BlankValues {
+trait KoanPredef {
 
   class ReplaceWithCorrectException extends Exception
 
