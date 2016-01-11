@@ -30,9 +30,9 @@ trait OperatorKoansHelper {
   var activated: Set [RecordingTrigger] = Set()
   def reset() {
     succeeded = Nil
-    activated = Set()    
+    activated = Set()
   }
-
+  
   val b = new RecordingTrigger("b")
   val c = new RecordingTrigger("c")
   val d = new RecordingTrigger("d")
@@ -46,8 +46,10 @@ trait OperatorKoansHelper {
 
   val sampleStopper = new Trigger
 
+
   script..
     runWithInputScript(s: ScriptNode[Any], input: Seq[RecordingTrigger]) =
+      input.foreach(t => t.activatedFlag = false)
       [s / sampleStopper reset()] || fireTriggers: input
 
     fireTriggers(input: Seq[RecordingTrigger]) =

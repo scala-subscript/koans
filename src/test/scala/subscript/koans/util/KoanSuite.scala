@@ -9,8 +9,12 @@ trait KoanSuite extends FunSuite with KoanPredef
   override def runTests(name: Option[String], args: Args) = name match {
     case Some(_) => super.runTests(name, args)
     case None    => testNames.foldLeft(SucceededStatus: Status) {(status, test) =>
-      if  (status == SucceededStatus) runTest(test, args)
-      else status 
+      if  (status == SucceededStatus) {
+        val result = runTest(test, args)
+        if (result == FailedStatus) args.stopper.requestStop()
+        result
+      }
+      else status
     }
   }
 
