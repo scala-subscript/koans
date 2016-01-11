@@ -12,6 +12,6 @@ class AboutSequentialOperators extends KoanSuite with OperatorKoansHelper {
     runWithInput(s)(b, c)
 
     succeeded should contain only (b, c)
-    activated should contain only (d)
+    activated should contain only (__)
   }
 }

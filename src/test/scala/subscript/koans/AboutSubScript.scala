@@ -7,14 +7,18 @@ import subscript.koans.util.KoanSuite
 
 class AboutSubScript extends KoanSuite {
   koan("""Scripts are defined with a `script` keyword.
-         |Scala code blocks can be used in the script body in the `{! ... !}` braces
-         |Scripts can be executed using the execute() method.""") {
+         |Scala code blocks can be used in the script body
+         |in the `{! ... !}` braces.
+         |Scripts can be executed using the execute() method.
+         |
+         |Fill in the blanks `__` in order to solve the koan.
+         |For example, in this exercise you need to replace `__` with `true`""") {
     
     var flag = false
     script foo = {!flag = true!}
     runScript(foo)
 
-    flag shouldBe true
+    flag shouldBe __
   }
 
   koan("""Scala code blocks can be executed sequentialy using
@@ -23,6 +27,6 @@ class AboutSubScript extends KoanSuite {
     script foo = {!i += 1!} {!i += 1!}
     runScript(foo)
 
-    i shouldBe 3
+    i shouldBe __
   }
 }
