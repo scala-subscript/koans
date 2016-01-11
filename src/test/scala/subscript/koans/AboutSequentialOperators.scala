@@ -12,17 +12,17 @@ class AboutSequentialOperators extends KoanSuite with OperatorKoansHelper {
 
     runWithInput(s)(b, c)
 
-    succeeded should contain only (b, c)
-    activated should contain only (d)
+    succeededShouldBe(b, c)
+    activatedShouldBe(d)
   }
 
   koan("""`;` is also a sequential operator""") {
     script s = b; c; d
 
-    runWithInput(s)(b, c)
+    runWithInput(s)(b)
 
-    succeeded should contain only (b, c)
-    activated should contain only (d)
+    succeededShouldBe(b)
+    activatedShouldBe(c)
   }
 
   koan("""Line break is also a sequential operator.
@@ -34,8 +34,8 @@ class AboutSequentialOperators extends KoanSuite with OperatorKoansHelper {
 
     runWithInput(s)()
 
-    succeeded shouldBe 'empty
-    activated should contain only (b)
+    succeededShouldBe()
+    activatedShouldBe(b)
   }
 
 }

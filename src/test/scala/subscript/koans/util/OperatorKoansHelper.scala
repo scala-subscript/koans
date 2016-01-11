@@ -6,7 +6,9 @@ import subscript.objectalgebra._
 
 import subscript.vm._
 
-trait OperatorKoansHelper {
+import org.scalatest._
+
+trait OperatorKoansHelper {this: Matchers =>
 
   class RecordingTrigger(name: String) extends Trigger {
     var activatedFlag = false
@@ -38,7 +40,16 @@ trait OperatorKoansHelper {
     activated = Set()
     runIsOver = true
   }
-  
+
+
+  def checkCollection(c: Iterable[RecordingTrigger], ts: Seq[Any]) {
+    if (ts.isEmpty) c shouldBe 'empty
+    else c should contain only (ts: _*)
+  }
+  def succeededShouldBe(ts: Any*) = checkCollection(succeeded, ts)
+  def activatedShouldBe(ts: Any*) = checkCollection(activated, ts)
+
+
   val b = new RecordingTrigger("b")
   val c = new RecordingTrigger("c")
   val d = new RecordingTrigger("d")
