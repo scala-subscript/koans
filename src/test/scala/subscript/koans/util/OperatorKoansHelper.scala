@@ -21,6 +21,10 @@ trait OperatorKoansHelper {
         activated  -= this
         succeeded :+= this
       }
+
+      there.onExclude {
+        if (!runIsOver) activated -= this
+      }
     }: super.lifecycle
 
     override def toString = name
@@ -28,9 +32,11 @@ trait OperatorKoansHelper {
 
   var succeeded: List[RecordingTrigger] = Nil
   var activated: Set [RecordingTrigger] = Set()
+  var runIsOver = true
   def reset() {
     succeeded = Nil
     activated = Set()
+    runIsOver = true
   }
   
   val b = new RecordingTrigger("b")
@@ -50,6 +56,7 @@ trait OperatorKoansHelper {
   script..
     runWithInputScript(s: ScriptNode[Any], input: Seq[RecordingTrigger]) =
       input.foreach(t => t.activatedFlag = false)
+      let runIsOver = false
       [s / sampleStopper reset()] || fireTriggers: input
 
     fireTriggers(input: Seq[RecordingTrigger]) =
@@ -59,6 +66,8 @@ trait OperatorKoansHelper {
         triggerWithin: 50, input(i)
         let i += 1
       ]
+      sleep: 10
+      let runIsOver = true
 
     // Waits for the trigger script to be activated, but only for maxDelay
     triggerWithin(maxDelay: Long, t: RecordingTrigger) =
