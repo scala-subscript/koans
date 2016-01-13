@@ -12,24 +12,24 @@ class AboutScriptDefinitions extends KoanSuite {
     var i = 0
     script s(x: Int) = {!i = x!}
     runScript(s(10))
-    i shouldBe 10
+    i shouldBe __
 
     script s2(x: Int, y: Int) = {!i = x + y!}
     runScript(s2(10, 20))
-    i shouldBe 30
+    i shouldBe __
 
     script s3(x: Int)(y: Int) = {!i = x * y!}
     runScript(s3(2)(3))
-    i shouldBe 6
+    i shouldBe __
   }
 
   koan("""Scripts can have return types. So far, SubScript is untyped,
-        | so they all must be Any.""") {
+        | so they all must be Any. More on script results in later koans.""") {
     var i = 0
     script s: Any = {!i = 10!}
     runScript(s)
 
-    i shouldBe 10
+    i shouldBe __
   }
 
   koan("""Scripts can be members of classes, objects and traits.
@@ -51,11 +51,11 @@ class AboutScriptDefinitions extends KoanSuite {
 
     val bar = new Bar
     runScript(bar.foo)
-    bar.i shouldBe 10
+    bar.i shouldBe __
 
     val foobar = new FooBar
     runScript(foobar.foo)
-    foobar.i shouldBe 20
+    foobar.i shouldBe __
   }
 
   koan("""Scripts can be defined using a shorthand syntax.
@@ -72,7 +72,7 @@ class AboutScriptDefinitions extends KoanSuite {
 
     runScript(s3)
 
-    i shouldBe 4
+    i shouldBe __
   }
 
 }

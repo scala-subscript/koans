@@ -7,5 +7,6 @@ class PathToEnlightenment extends Sequential(
 , new AboutScriptDefinitions
 
 , new AboutSequentialOperators
+, new AboutEpsilonAndDelta
 , new AboutParallelOperators
 )
