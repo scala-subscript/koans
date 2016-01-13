@@ -6,7 +6,11 @@ import subscript.Predef._
 import subscript.koans.util.KoanSuite
 
 class AboutSubScript extends KoanSuite {
-  koan("""Scripts are defined with a `script` keyword.
+  koan("""Before using SubScript, you should define a top-level import of
+        | `subscript.language` (see top of this source file). You should also
+        | `import subscript.Predef._`.
+        | 
+        | Scripts are defined with a `script` keyword.
         | Scala code blocks can be used in the script body
         | in the `{! ... !}` braces.
         | Scripts can be executed using the runScript() method.
