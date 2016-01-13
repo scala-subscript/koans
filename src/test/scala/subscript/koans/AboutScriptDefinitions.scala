@@ -59,9 +59,10 @@ class AboutScriptDefinitions extends KoanSuite {
   }
 
   koan("""Scripts can be defined using a shorthand syntax.
-        | Indentation matters: the shorthand syntax breaks back
-        | to the ordinary Scala code when the indentation of the line
-        | is smaller then the one of the previous script's body.""") {
+        | After `script..`, you can define scripts without `script`
+        | keyword. Indentation matters: if the line's indentation is
+        | less than that of of the first script definition, it will
+        | signify the end of shorthand syntax.""") {
     var i = 0
 
     script..

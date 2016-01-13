@@ -42,9 +42,10 @@ class AboutSubScript extends KoanSuite {
   koan("""Scripts can call one another or Scala methods. Script calls and
         | method calls are also operands.""") {
     var i = 1
-    script foo = a b
+    script foo = a b c
     script a = {!i += 1!}
     script b = {!i += 2!}
+    def c = i += 3
 
     runScript(foo)
 
