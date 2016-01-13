@@ -15,16 +15,19 @@ trait OperatorKoansHelper {this: Matchers =>
 
     override script lifecycle = @{
       there.onActivate {
+        println("Activated " + this)
         activatedFlag = true
         activated += this
       }
 
       there.onSuccess  {
+        println("Succeeded " + this)
         activated  -= this
         succeeded :+= this
       }
 
       there.onExclude {
+        println("Excluded " + this)
         if (!runIsOver) activated -= this
       }
     }: super.lifecycle
@@ -68,7 +71,7 @@ trait OperatorKoansHelper {this: Matchers =>
     runWithInputScript(s: ScriptNode[Any], input: Seq[RecordingTrigger]) =
       input.foreach(t => t.activatedFlag = false)
       let runIsOver = false
-      [s / sampleStopper reset()] || fireTriggers: input
+      [s [-] / sampleStopper reset()] || @{there.onExclude {println("Triggers excluded")}}: fireTriggers: input
 
     fireTriggers(input: Seq[RecordingTrigger]) =
       var i = 0
@@ -77,7 +80,7 @@ trait OperatorKoansHelper {this: Matchers =>
         triggerWithin: 50, input(i)
         let i += 1
       ]
-      sleep: 10
+      sleep: 1000
       let runIsOver = true
 
     // Waits for the trigger script to be activated, but only for maxDelay

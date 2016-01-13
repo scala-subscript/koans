@@ -4,5 +4,5 @@ import subscript.Predef._
 import subscript.SubScriptApplication
 
 object Main extends SubScriptApplication {
-  script live = println("Foo") [+] println: "Bar"
+  script live = [+]
 }

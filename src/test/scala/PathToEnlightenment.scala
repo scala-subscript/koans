@@ -8,5 +8,6 @@ class PathToEnlightenment extends Sequential(
 
 , new AboutSequentialOperators
 , new AboutEpsilonAndDelta
-, new AboutParallelOperators
+
+, new AboutAndParallelism
 )

@@ -24,7 +24,9 @@ class AboutSequentialOperators extends KoanSuite with OperatorKoansHelper {
         | activation, you need to pass them to `runWithInput` in order to
         | execute them.
         | `activatedShouldBe` asserts whether the given operands are activated
-        | at the end of `runWithInput`.
+        | at the end of `runWithInput`. Fill the operands in there, separating
+        | them with a comma. If no operands, in your opinion, are activated,
+        | leave the parentheses empty: `activatedShouldBe()`.
         |
         | All the methods and operands described above are defined at KoanSuite
         | trait which this class extends and are not part of the SubScript
@@ -33,14 +35,14 @@ class AboutSequentialOperators extends KoanSuite with OperatorKoansHelper {
     script s = b c d
 
     runWithInput(s)(b, c)
-    activatedShouldBe(d)
+    activatedShouldBe(__)
   }
 
   koan("""`;` is also a sequential operator, equivalent to space.""") {
     script s = b; c; d
 
     runWithInput(s)(b)
-    activatedShouldBe(c)
+    activatedShouldBe(__)
   }
 
   koan("""Line break is also a sequential operator, equivalent to space.
@@ -51,9 +53,7 @@ class AboutSequentialOperators extends KoanSuite with OperatorKoansHelper {
                d
 
     runWithInput(s)()
-
-    succeededShouldBe()
-    activatedShouldBe(b)
+    activatedShouldBe(__)
   }
 
 }
