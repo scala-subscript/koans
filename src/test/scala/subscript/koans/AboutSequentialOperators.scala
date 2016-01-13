@@ -7,7 +7,29 @@ import subscript.koans.util._
 
 class AboutSequentialOperators extends KoanSuite with OperatorKoansHelper {
 
-  koan("""Sequential operator, space, executes its operands sequentialy""") {
+  koan("""In SubScript, operands are activated before execution.
+        | When we say "operand is activated", we mean that it can be
+        | executed.
+        |
+        | When an operator is executed, it can finish its execution either
+        | successfuly (with success) or not.
+        |
+        | Sequential operator, space, executes its operators sequentialy.
+        | It means that at the very beginning the very first operand is activated.
+        | When it is executed successfuly, next one is activated and so on.
+        |
+        | Below, `runWithInput` runs the given script and makes the given
+        | input succeed (finish execution with success) in order it is given.
+        | b, c, d, e, f are operands that won't be executed automaticaly after
+        | activation, you need to pass them to `runWithInput` in order to
+        | execute them.
+        | `activatedShouldBe` asserts whether the given operands are activated
+        | at the end of `runWithInput`.
+        |
+        | All the methods and operands described above are defined at KoanSuite
+        | trait which this class extends and are not part of the SubScript
+        | distribution.""")
+  {
     script s = b c d
 
     runWithInput(s)(b, c)

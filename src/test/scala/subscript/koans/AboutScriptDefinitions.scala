@@ -58,20 +58,20 @@ class AboutScriptDefinitions extends KoanSuite {
     foobar.i shouldBe 20
   }
 
-  // koan("""Scripts can be defined using a shorthand syntax.
-  //       | Indentation matters: the shorthand syntax breaks back
-  //       | to the ordinary Scala code when the indentation of the line
-  //       | is smaller then the one of the previous script's body.""") {
-  //   var i = 0
+  koan("""Scripts can be defined using a shorthand syntax.
+        | Indentation matters: the shorthand syntax breaks back
+        | to the ordinary Scala code when the indentation of the line
+        | is smaller then the one of the previous script's body.""") {
+    var i = 0
 
-  //   script..
-  //     s1 = {!i += 1!}
-  //     s2 = s1 s1
-  //     s3 = s2 s2
+    script..
+      s1 = {!i += 1!}
+      s2 = s1 s1
+      s3 = s2 s2
 
-  //   runScript(s3)
+    runScript(s3)
 
-  //   i shouldBe 4
-  // }
+    i shouldBe 4
+  }
 
 }

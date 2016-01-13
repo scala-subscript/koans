@@ -10,7 +10,6 @@ object Main {
       s3 = s2 s2
       s4 = s3 println: i
 
-    var y = 3
     runScript(s4)
   }
   
