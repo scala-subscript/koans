@@ -4,6 +4,7 @@ import subscript.koans._
 
 class PathToEnlightenment extends Sequential(
   new AboutSubScript
+, new AboutScriptDefinitions
 , new AboutSequentialOperators
 , new AboutParallelOperators
 )
