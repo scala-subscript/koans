@@ -7,7 +7,7 @@ To get started with the project:
 1. Clone it with `git clone https://github.com/scala-subscript/koans.git`
 2. Go to the root directory: `cd koans`
 3. Open the SBT console: `sbt`
-3. Run the koans from SBT console: `test-only PathToEnlightenment`
+4. Run the koans from SBT console: `test-only PathToEnlightenment`
 
 You'll see an error indicating the koan you need to work on. For example:
 ```
