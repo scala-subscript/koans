@@ -16,12 +16,12 @@ class AboutOrParallelism extends KoanSuite with OperatorKoansHelper {
       s2 = [b c || d [-]] f
 
     runWithInput(s1)()
-    activatedShouldBe(b, d)
+    activatedShouldBe(___)
 
     runWithInput(s1)(b, c)
-    activatedShouldBe(f)
+    activatedShouldBe(___)
 
-    runWithInput(s2)(d, b, c)
+    runWithInput(s2)(d, ___)
     activatedShouldBe(f)
   }
 
@@ -45,23 +45,23 @@ class AboutOrParallelism extends KoanSuite with OperatorKoansHelper {
     runWithInput(s1)()
     activatedShouldBe(b, d)
 
-    runWithInput(s1)(b, c)
+    runWithInput(s1)(___)
     activatedShouldBe(d)
 
     runWithInput(s1)(b, c, d)
-    activatedShouldBe(e)
+    activatedShouldBe(___)
 
-    runWithInput(s1)(b, c, d, e)
+    runWithInput(s1)(___)
     activatedShouldBe()
 
 
     runWithInput(s2)()
-    activatedShouldBe(b, d)
+    activatedShouldBe(___)
 
-    runWithInput(s2)(b, c)
+    runWithInput(s2)(___)
     activatedShouldBe(d, f)
 
     runWithInput(s2)(b, c, f)
-    activatedShouldBe()
+    activatedShouldBe(___)
   }
 }

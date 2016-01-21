@@ -61,6 +61,8 @@ trait OperatorKoansHelper {this: Matchers =>
   val g = new RecordingTrigger("g")
   val h = new RecordingTrigger("h")
 
+  val `___` = new RecordingTrigger("___")
+
   def runWithInput(s: ScriptNode[Any])(input: RecordingTrigger*) {
     reset()
     runScript(runWithInputScript(s, input))
@@ -73,7 +75,7 @@ trait OperatorKoansHelper {this: Matchers =>
     runWithInputScript(s: ScriptNode[Any], input: Seq[RecordingTrigger]) =
       input.foreach(t => t.activatedFlag = false)
       let runIsOver = false
-      [s [-] / sampleStopper reset()] || @{there.onExclude {println("Triggers excluded")}}: fireTriggers: input
+      [s [-] / sampleStopper reset()] || fireTriggers: input
 
     fireTriggers(input: Seq[RecordingTrigger]) =
       var i = 0
@@ -88,7 +90,7 @@ trait OperatorKoansHelper {this: Matchers =>
     // Waits for the trigger script to be activated, but only for maxDelay
     triggerWithin(maxDelay: Long, t: RecordingTrigger) =
       var start = System.currentTimeMillis
-      [while(!t.activatedFlag) sleep: 10]
+      [while(!t.activatedFlag && System.currentTimeMillis - start <= maxDelay) sleep: 10]
       if System.currentTimeMillis - start <= maxDelay then t.trigger else sampleStopper.trigger
 
 }
