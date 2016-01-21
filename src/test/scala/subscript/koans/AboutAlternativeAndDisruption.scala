@@ -13,15 +13,15 @@ class AboutAlternativeAndDisruption extends KoanSuite with OperatorKoansHelper {
     script s = [b c + d e + f g] h
 
     runWithInput(s)()
-    activatedShouldBe(b, d, f)
+    activatedShouldBe(___)
 
-    runWithInput(s)(b)
+    runWithInput(s)(___)
     activatedShouldBe(c)
 
     runWithInput(s)(d)
-    activatedShouldBe(e)
+    activatedShouldBe(___)
 
-    runWithInput(s)(f, g)
+    runWithInput(s)(___)
     activatedShouldBe(h)
   }
 
@@ -31,23 +31,23 @@ class AboutAlternativeAndDisruption extends KoanSuite with OperatorKoansHelper {
     script s = b c / d e
 
     runWithInput(s)()
-    activatedShouldBe(b, d)
+    activatedShouldBe(___)
 
-    runWithInput(s)(b)
+    runWithInput(s)(___)
     activatedShouldBe(c, d)
 
     runWithInput(s)(b, c)
-    activatedShouldBe()
+    activatedShouldBe(___)
 
 
     runWithInput(s)(d)
     activatedShouldBe(e)
 
     runWithInput(s)(b, d)
-    activatedShouldBe(e)
+    activatedShouldBe(___)
 
     runWithInput(s)(d, e)
-    activatedShouldBe()
+    activatedShouldBe(___)
   }
 
 }
