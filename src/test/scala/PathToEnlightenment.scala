@@ -11,4 +11,5 @@ class PathToEnlightenment extends Sequential(
 
 , new AboutAndParallelism
 , new AboutOrParallelism
+, new AboutAlternativeAndDisruption
 )

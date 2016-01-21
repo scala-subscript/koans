@@ -58,6 +58,8 @@ trait OperatorKoansHelper {this: Matchers =>
   val d = new RecordingTrigger("d")
   val e = new RecordingTrigger("e")
   val f = new RecordingTrigger("f")
+  val g = new RecordingTrigger("g")
+  val h = new RecordingTrigger("h")
 
   def runWithInput(s: ScriptNode[Any])(input: RecordingTrigger*) {
     reset()
