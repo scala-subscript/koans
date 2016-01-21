@@ -11,8 +11,10 @@ class AboutSequentialOperators extends KoanSuite with OperatorKoansHelper {
         | When we say "operand is activated", we mean that it can be
         | executed.
         |
+        | Operators are also valid operands, so same logic is applicable to them.
+        |
         | When an operator is executed, it can finish its execution either
-        | successfuly (with success) or not.
+        | successfuly (with success) or not (e.g. an exception happened).
         |
         | Sequential operator, space, executes its operators sequentialy.
         | It means that at the very beginning the very first operand is activated.

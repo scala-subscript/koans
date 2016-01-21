@@ -15,19 +15,19 @@ trait OperatorKoansHelper {this: Matchers =>
 
     override script lifecycle = @{
       there.onActivate {
-        println("Activated " + this)
+        // println("Activated " + this)
         activatedFlag = true
         activated += this
       }
 
       there.onSuccess  {
-        println("Succeeded " + this)
+        // println("Succeeded " + this)
         activated  -= this
         succeeded :+= this
       }
 
       there.onExclude {
-        println("Excluded " + this)
+        // println("Excluded " + this)
         if (!runIsOver) activated -= this
       }
     }: super.lifecycle

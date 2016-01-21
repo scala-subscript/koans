@@ -10,4 +10,5 @@ class PathToEnlightenment extends Sequential(
 , new AboutEpsilonAndDelta
 
 , new AboutAndParallelism
+, new AboutOrParallelism
 )
