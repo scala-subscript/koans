@@ -20,3 +20,5 @@ You'll see an error indicating the koan you need to work on. For example:
 
 This means you need to work on AboutSubScript koan. Find it at `src/test/scala/subscript/koans/` folder, open it and make the tests pass.
 The instructions in the koans will be helpful for you.
+
+**IMPORTANT:** so far, SubScript works by rewriting the sources. This means scripts may take more lines in the rewritten (pure Scala) state than they take in SubScript state. Because of this, compiler can't report the line on which an error occured reliably. More often then not, failed tests will point to a wrong line.
