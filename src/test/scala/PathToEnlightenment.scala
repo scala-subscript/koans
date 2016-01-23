@@ -16,4 +16,5 @@ class PathToEnlightenment extends Sequential(
 , new AboutMoreSpecialOperands
 
 , new AboutResultValues
+, new AboutAdvancedResultValues
 )
