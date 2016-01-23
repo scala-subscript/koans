@@ -12,10 +12,10 @@ class AboutConditionalOperators extends KoanSuite with OperatorKoansHelper {
     script s(predicate: Boolean) = if predicate then b else c
 
     runWithInput(s(true))()
-    activatedShouldBe(b)
+    activatedShouldBe(___)
 
     runWithInput(s(false))()
-    activatedShouldBe(c)
+    activatedShouldBe(___)
   }
 
   koan("""`do` operators works like `if`, but its predicate is a SubScript
@@ -26,10 +26,10 @@ class AboutConditionalOperators extends KoanSuite with OperatorKoansHelper {
       s2 = do b [-] then c else d
 
     runWithInput(s1)(b)
-    activatedShouldBe(c)
+    activatedShouldBe(___)
 
     runWithInput(s2)(b)
-    activatedShouldBe(d)
+    activatedShouldBe(___)
   }
 
 }
