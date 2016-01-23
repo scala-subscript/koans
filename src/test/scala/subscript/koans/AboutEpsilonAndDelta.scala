@@ -15,7 +15,7 @@ class AboutEpsilonAndDelta extends KoanSuite with OperatorKoansHelper {
     activatedShouldBe(__)
   }
 
-  koan("""Delta, [-], is a special operand that never succeeds.
+  koan("""Delta, `[-]`, is a special operand that never succeeds.
         | It signifies an ACP deadlock.""") {
     script s = b [-] c
 

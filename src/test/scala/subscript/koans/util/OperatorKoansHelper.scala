@@ -30,6 +30,11 @@ trait OperatorKoansHelper {this: Matchers =>
         // println("Excluded " + this)
         if (!runIsOver) activated -= this
       }
+
+      there.onDeactivate {
+        // println("Deactivated " + this)
+        activatedFlag = false
+      }
     }: super.lifecycle
 
     override def toString = name
