@@ -16,7 +16,7 @@ class AboutResultValues extends KoanSuite {
         | their result value set to `null`.""") {
     script s = [+]
 
-    runScript(s).$ shouldBe null
+    runScript(s).$ shouldBe __
   }
 
   koan("""You can specify that the script's result value should be that
@@ -24,27 +24,27 @@ class AboutResultValues extends KoanSuite {
         | with `^`.""") {
     script s = {!1!}^ {!2!}
 
-    runScript(s).$ shouldBe Success(1)
+    runScript(s).$ shouldBe Success(__)
   }
 
   koan("""If there's only one operand capable of having a result value
         | is present in a script, its result becomes script's result.""") {
     script s = {!1!}
 
-    runScript(s).$ shouldBe Success(1)
+    runScript(s).$ shouldBe __
   }
 
   koan("""Each subsequent caret `^` overwrites script's result value.""") {
     script s = {!1!}^ {!2!}^
 
-    runScript(s).$ shouldBe Success(2)
+    runScript(s).$ shouldBe __
   }
 
   koan("""For convenience, if you need a script to have a result of a
         | literal, you can directly prefix that literal with `^`""") {
     script s = {!!} ^'r'
 
-    runScript(s).$ shouldBe Success('r')
+    runScript(s).$ shouldBe __
   }
 
 }
