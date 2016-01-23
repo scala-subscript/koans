@@ -11,7 +11,7 @@ class AboutMoreSpecialOperands extends KoanSuite with OperatorKoansHelper {
     script s = b c ...
     
     runWithInput(s)(b, c, b, c, b)
-    activatedShouldBe(c)
+    activatedShouldBe(___)
   }
 
   koan("""It doesn't matter where you put `...` in a sequence for it to have
@@ -21,10 +21,10 @@ class AboutMoreSpecialOperands extends KoanSuite with OperatorKoansHelper {
       s2 = ... b c
 
     runWithInput(s1)(b, c)
-    activatedShouldBe(b)
+    activatedShouldBe(___)
 
     runWithInput(s2)(b, c, b)
-    activatedShouldBe(c)
+    activatedShouldBe(___)
   }
 
   koan("""`while(p)` is an operand that works like `...`, but loops its
@@ -33,10 +33,10 @@ class AboutMoreSpecialOperands extends KoanSuite with OperatorKoansHelper {
     script s = while(i < 2) b c {!i += 1!}
 
     runWithInput(s)(b, c)
-    activatedShouldBe(b)
+    activatedShouldBe(___)
 
     runWithInput(s)(b, c, b, c)
-    activatedShouldBe()
+    activatedShouldBe(___)
   }
 
   koan("""As `while` is an operand, it also doesn't matter where you put it
@@ -45,17 +45,17 @@ class AboutMoreSpecialOperands extends KoanSuite with OperatorKoansHelper {
     script s = b while(i < 2) c {!i += 1!}
 
     runWithInput(s)(b, c)
-    activatedShouldBe(b)
+    activatedShouldBe(___)
 
     runWithInput(s)(b, c, b, c)
-    activatedShouldBe()
+    activatedShouldBe(___)
   }
 
   koan("""`break` breaks the activation of its parent operand.""") {
     script s = b && c && break && d
 
     runWithInput(s)()
-    activatedShouldBe(b, c)
+    activatedShouldBe(___)
   }
 
   koan("""Optional break `break?` works like `break`, but once an activation
@@ -64,13 +64,13 @@ class AboutMoreSpecialOperands extends KoanSuite with OperatorKoansHelper {
     script s = b && c && break? && d
 
     runWithInput(s)()
-    activatedShouldBe(b, c)
+    activatedShouldBe(___)
 
     runWithInput(s)(c)
-    activatedShouldBe(b, d)
+    activatedShouldBe(___)
 
     runWithInput(s)(b)
-    activatedShouldBe(c, d)
+    activatedShouldBe(___)
   }
 
 }
