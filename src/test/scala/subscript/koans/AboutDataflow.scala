@@ -18,7 +18,7 @@ class AboutDataflow extends KoanSuite {
       s = a ~~(x: Int)~~> ^(x + 2)
       a = ^3
 
-    runScript(s).$ shouldBe Success(5)
+    runScript(s).$ shouldBe __
   }
 
   koan("""Dataflow can handle exceptions that occur in the left-hand
@@ -31,8 +31,8 @@ class AboutDataflow extends KoanSuite {
       s1 = ^3
       s2 = {!throw new RuntimeException!}
 
-    runScript(s(s1)).$ shouldBe Success(5)
-    runScript(s(s2)).$ shouldBe Success("Exception happened!")
+    runScript(s(s1)).$ shouldBe __
+    runScript(s(s2)).$ shouldBe __
   }
 
   koan("""Dataflow can have any number of result-matching clauses, just
@@ -47,9 +47,9 @@ class AboutDataflow extends KoanSuite {
       s2 = ^"foo"
       s3 = ^2.2
 
-    runScript(s(s1)).$ shouldBe Success(3)
-    runScript(s(s2)).$ shouldBe Success("Result: foo")
-    runScript(s(s3)).$ shouldBe Success(4.4)
+    runScript(s(s1)).$ shouldBe __
+    runScript(s(s2)).$ shouldBe __
+    runScript(s(s3)).$ shouldBe __
   }
 
   koan("""Dataflow map is like dataflow, but its right-hand side
@@ -65,8 +65,8 @@ class AboutDataflow extends KoanSuite {
       lhs ~~(x: Int   )~~^ x * 2
          +~~(x: Double)~~^ x * 3
 
-    runScript(s([^2  ])).$ shouldBe Success(4  )
-    runScript(s([^2.0])).$ shouldBe Success(6.0)
+    runScript(s([^2  ])).$ shouldBe __
+    runScript(s([^2.0])).$ shouldBe __
   }
 
   koan("""Dataflow map has a shorthand version. Its right-hand side must
@@ -75,7 +75,7 @@ class AboutDataflow extends KoanSuite {
     def int2string(x: Int): String = x.toString
     script s = {!1!} ~~^ int2string
 
-    runScript(s).$ shouldBe Success("1")
+    runScript(s).$ shouldBe __
   }
 
 }
