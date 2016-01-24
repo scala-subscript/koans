@@ -11,23 +11,23 @@ class AboutAdvancedSyntax extends KoanSuite {
     script s = let a = 1
 
     runScript(s)
-    a shouldBe 1
+    a shouldBe __
   }
 
   koan("""You can define vars and vals in scripts.""") {
     var a = 0
-    script s = val b = 1
+    script s = val b = 2
                let a = b
 
     runScript(s)
-    a shouldBe 1
+    a shouldBe __
   }
 
   koan("""You can use inline definition of scripts from Scala code.""") {
     var a = 0
-    val s = ([let a = 1])
+    val s = ([let a = 3])
 
     runScript(s)
-    a shouldBe 1
+    a shouldBe __
   }
 }
