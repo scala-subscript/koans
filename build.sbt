@@ -1,5 +1,6 @@
 scalaVersion := "2.11.7"
-libraryDependencies += "org.subscript-lang" %% "subscript-swing" % "3.0.0"
+resolvers += Resolver.sonatypeRepo("snapshots")
+libraryDependencies += "org.subscript-lang" %% "subscript-swing" % "3.0.0-SNAPSHOT"
 SubscriptSbt.projectSettings
 
 libraryDependencies += "org.scalactic" %% "scalactic" % "2.2.6"

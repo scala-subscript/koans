@@ -19,5 +19,37 @@ class AboutAdvancedResultValues extends KoanSuite {
 
     runScript(s).$ shouldBe Success(Seq(0, 1, 2))
   }
+
+  koan("""The remark in the previous koan about the index of the
+        | result value in the sequnce is important.""") {
+    script s = var i = 0
+               [while(i < 4) {!i!}^^ {!i += 1!}]
+
+               let i = 0
+               [while(i < 3) {!i += 1!} {!i!}^^]
+
+    runScript(s).$ shouldBe Success(Seq(1, 2, 3, 3))
+  }
+
+  koan("""Double caret followed by a number (`^^1`, `^^2` etc) makes
+        | the result of a script to be a tuple and places the result
+        | of the current operand to the specified position in the
+        | tuple.""") {
+    script s = {!1!}^^2 {!2!}^^1
+
+    runScript(s).$ shouldBe Success((2, 1))
+  }
+
+  koan("""You can use all te above mentioned syntax with literals and
+        | vars if you first prefix them with `^`.""") {
+    script..
+      s1 = var i = 0
+           [while(i < 4) ^i^^ let i += 1]
+
+      s2 = ^1^^1 ^2^^2
+
+    runScript(s1).$ shouldBe Success(Seq(0, 1, 2, 3))
+    runScript(s2).$ shouldBe Success((1, 2))
+  }
   
 }
