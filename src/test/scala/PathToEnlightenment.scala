@@ -13,6 +13,8 @@ class PathToEnlightenment extends Sequential(
 , new AboutOrParallelism
 , new AboutAlternativeAndDisruption
 , new AboutConditionalOperators
+
+, new AboutAdvancedSyntax
 , new AboutMoreSpecialOperands
 
 , new AboutResultValues
