@@ -17,4 +17,5 @@ class PathToEnlightenment extends Sequential(
 
 , new AboutResultValues
 , new AboutAdvancedResultValues
+, new AboutDataflow
 )
