@@ -14,15 +14,21 @@ class AboutOrParallelism extends KoanSuite with OperatorKoansHelper {
     script..
       s1 = [b c || d   e] f
       s2 = [b c || d [-]] f
+    
+    test(1) {
+      runWithInput(s1)()
+      activatedShouldBe(___)
+    }
 
-    runWithInput(s1)()
-    activatedShouldBe(___)
+    test(2) {
+      runWithInput(s1)(b, c)
+      activatedShouldBe(___)
+    }
 
-    runWithInput(s1)(b, c)
-    activatedShouldBe(___)
-
-    runWithInput(s2)(d, ___)
-    activatedShouldBe(f)
+    test(3) {
+      runWithInput(s2)(d, ___)
+      activatedShouldBe(f)
+    }
   }
 
   koan("""Strict or-parallel operator `|` behaves like `||`, but it
@@ -42,26 +48,40 @@ class AboutOrParallelism extends KoanSuite with OperatorKoansHelper {
       s1 =  b c | d e
       s2 = [b c | d e] f
 
-    runWithInput(s1)()
-    activatedShouldBe(b, d)
+    test(1) {
+      runWithInput(s1)()
+      activatedShouldBe(b, d)
+    }
 
-    runWithInput(s1)(___)
-    activatedShouldBe(d)
+    test(2) {
+      runWithInput(s1)(___)
+      activatedShouldBe(d)
+    }
 
-    runWithInput(s1)(b, c, d)
-    activatedShouldBe(___)
+    test(3) {
+      runWithInput(s1)(b, c, d)
+      activatedShouldBe(___)
+    }
 
-    runWithInput(s1)(___)
-    activatedShouldBe()
+    test(4) {
+      runWithInput(s1)(___)
+      activatedShouldBe()
+    }
 
 
-    runWithInput(s2)()
-    activatedShouldBe(___)
+    test(5) {
+      runWithInput(s2)()
+      activatedShouldBe(___)
+    }
 
-    runWithInput(s2)(___)
-    activatedShouldBe(d, f)
+    test(6) {
+      runWithInput(s2)(___)
+      activatedShouldBe(d, f)
+    }
 
-    runWithInput(s2)(b, c, f)
-    activatedShouldBe(___)
+    test(7) {
+      runWithInput(s2)(b, c, f)
+      activatedShouldBe(___)
+    }
   }
 }

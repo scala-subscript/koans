@@ -12,17 +12,25 @@ class AboutAlternativeAndDisruption extends KoanSuite with OperatorKoansHelper {
         | starts its execution.""") {
     script s = [b c + d e + f g] h
 
-    runWithInput(s)()
-    activatedShouldBe(___)
+    test(1) {
+      runWithInput(s)()
+      activatedShouldBe(___)
+    }
 
-    runWithInput(s)(___)
-    activatedShouldBe(c)
+    test(2) {
+      runWithInput(s)(___)
+      activatedShouldBe(c)
+    }
 
-    runWithInput(s)(d)
-    activatedShouldBe(___)
+    test(3) {
+      runWithInput(s)(d)
+      activatedShouldBe(___)
+    }
 
-    runWithInput(s)(___)
-    activatedShouldBe(h)
+    test(4) {
+      runWithInput(s)(___)
+      activatedShouldBe(h)
+    }
   }
 
   koan("""Disruption operator `/` terminates its left-hand side once its
@@ -30,24 +38,36 @@ class AboutAlternativeAndDisruption extends KoanSuite with OperatorKoansHelper {
         | execution without disruption, right-hand side is excluded.""") {
     script s = b c / d e
 
-    runWithInput(s)()
-    activatedShouldBe(___)
+    test(1) {
+      runWithInput(s)()
+      activatedShouldBe(___)
+    }
 
-    runWithInput(s)(___)
-    activatedShouldBe(c, d)
+    test(2) {
+      runWithInput(s)(___)
+      activatedShouldBe(c, d)
+    }
 
-    runWithInput(s)(b, c)
-    activatedShouldBe(___)
+    test(3) {
+      runWithInput(s)(b, c)
+      activatedShouldBe(___)
+    }
 
 
-    runWithInput(s)(d)
-    activatedShouldBe(e)
+    test(4) {
+      runWithInput(s)(d)
+      activatedShouldBe(e)
+    }
 
-    runWithInput(s)(b, d)
-    activatedShouldBe(___)
+    test(5) {
+      runWithInput(s)(b, d)
+      activatedShouldBe(___)
+    }
 
-    runWithInput(s)(d, e)
-    activatedShouldBe(___)
+    test(6) {
+      runWithInput(s)(d, e)
+      activatedShouldBe(___)
+    }
   }
 
 }
