@@ -7,8 +7,10 @@ import subscript.koans.util._
 
 class AboutEpsilonAndDelta extends KoanSuite with OperatorKoansHelper {
 
-  koan("""Epsilon, `[+]`, is a special operand that succeeds immediately
-        | after activation. It signifies an ACP empty action.""") {
+  koan(1)(
+    """Epsilon, `[+]`, is a special operand that succeeds immediately
+    | after activation. It signifies an ACP empty action."""
+  ) {
     script s = b [+] c
 
     test(1) {
@@ -17,8 +19,10 @@ class AboutEpsilonAndDelta extends KoanSuite with OperatorKoansHelper {
     }
   }
 
-  koan("""Delta, `[-]`, is a special operand that never succeeds.
-        | It signifies an ACP deadlock.""") {
+  koan(2)(
+    """Delta, `[-]`, is a special operand that never succeeds.
+    | It signifies an ACP deadlock."""
+  ) {
     script s = b [-] c
 
     test(1) {

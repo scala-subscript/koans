@@ -28,13 +28,15 @@ class AboutSubScript extends KoanSuite {
     }
   }
 
-  koan("""Script bodies are always SubScript expressions - a sequence of
-        | operands bound by SubScript operators. Scala code blocks are
-        | operands. In previous koan, the expression consisted only of
-        | one operand.
-        |
-        | The most basic operator is a sequence - its operands are
-        | executed sequentialy. It is denoted as a space.""") {
+  koan(2)(
+    """Script bodies are always SubScript expressions - a sequence of
+    | operands bound by SubScript operators. Scala code blocks are
+    | operands. In previous koan, the expression consisted only of
+    | one operand.
+    |
+    | The most basic operator is a sequence - its operands are
+    | executed sequentialy. It is denoted as a space."""
+  ) {
     var i = 1
     script foo = {!i += 1!} {!i += 1!}
 
@@ -44,8 +46,10 @@ class AboutSubScript extends KoanSuite {
     }
   }
 
-  koan("""Scripts can call one another or Scala methods. Script calls and
-        | method calls are also operands.""") {
+  koan(3)(
+    """Scripts can call one another or Scala methods. Script calls and
+    | method calls are also operands."""
+  ) {
     var i = 1
     script foo = a b c
     script a = {!i += 1!}

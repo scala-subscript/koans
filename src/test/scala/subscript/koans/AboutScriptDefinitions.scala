@@ -7,8 +7,10 @@ import subscript.koans.util.KoanSuite
 
 class AboutScriptDefinitions extends KoanSuite {
   
-  koan("""Scripts' signatures are defined with same syntax as
-        | ones of methods.""") {
+  koan(1)(
+    """Scripts' signatures are defined with same syntax as
+    | ones of methods."""
+  ) {
     var i = 0
     
     test(1) {
@@ -30,8 +32,10 @@ class AboutScriptDefinitions extends KoanSuite {
     }
   }
 
-  koan("""Scripts can have return types. So far, SubScript is untyped,
-        | so they all must be Any. More on script results in later koans.""") {
+  koan(2)(
+    """Scripts can have return types. So far, SubScript is untyped,
+    | so they all must be Any. More on script results in later koans."""
+  ) {
     var i = 0
     script s: Any = {!i = 10!}
     
@@ -41,9 +45,11 @@ class AboutScriptDefinitions extends KoanSuite {
     }
   }
 
-  koan("""Scripts can be members of classes, objects and traits.
-        | They can be treated like ordinary methods. Abstract scripts
-        | must have return type specified.""") {
+  koan(3)(
+    """Scripts can be members of classes, objects and traits.
+    | They can be treated like ordinary methods. Abstract scripts
+    | must have return type specified."""
+  ) {
     abstract class Foo {
       var i = 0
       script foo = bar
@@ -71,11 +77,13 @@ class AboutScriptDefinitions extends KoanSuite {
     }
   }
 
-  koan("""Scripts can be defined using a shorthand syntax.
-        | After `script..`, you can define scripts without `script`
-        | keyword. Indentation matters: if the line's indentation is
-        | less than that of of the first script definition, it will
-        | signify the end of shorthand syntax.""") {
+  koan(4)(
+    """Scripts can be defined using a shorthand syntax.
+    | After `script..`, you can define scripts without `script`
+    | keyword. Indentation matters: if the line's indentation is
+    | less than that of of the first script definition, it will
+    | signify the end of shorthand syntax."""
+  ) {
     var i = 0
 
     script..
