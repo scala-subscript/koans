@@ -20,4 +20,6 @@ trait KoanSuite extends FunSuite with KoanPredef
 
   def koan(name: String)(fun: => Unit) = test(name.stripMargin)(fun)
   
+  def test(id: Int)(fun: => Unit) = withClue(s"Test $id:")(fun)
+
 }
