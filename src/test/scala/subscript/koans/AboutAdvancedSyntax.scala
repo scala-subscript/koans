@@ -6,7 +6,9 @@ import subscript.Predef._
 import subscript.koans.util.KoanSuite
 
 class AboutAdvancedSyntax extends KoanSuite {
-  koan("""You can use `let` keyword to exeute one-linear Scala code snippets.""") {
+  koan(1)(
+    """You can use `let` keyword to exeute one-linear Scala code snippets."""
+  ) {
     var a = 0
     script s = let a = 1
 
@@ -16,7 +18,9 @@ class AboutAdvancedSyntax extends KoanSuite {
     }
   }
 
-  koan("""You can define vars and vals in scripts.""") {
+  koan(2)(
+    """You can define vars and vals in scripts."""
+  ) {
     var a = 0
     script s = val b = 2
                let a = b
@@ -27,7 +31,9 @@ class AboutAdvancedSyntax extends KoanSuite {
     }
   }
 
-  koan("""You can use inline definition of scripts from Scala code.""") {
+  koan(3)(
+    """You can use inline definition of scripts from Scala code."""
+  ) {
     var a = 0
     val s = ([let a = 3])
 
