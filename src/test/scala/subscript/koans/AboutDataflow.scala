@@ -18,7 +18,9 @@ class AboutDataflow extends KoanSuite {
       s = a ~~(x: Int)~~> ^(x + 2)
       a = ^3
 
-    runScript(s).$ shouldBe __
+    test(1) {
+      runScript(s).$ shouldBe __
+    }
   }
 
   koan("""Dataflow can handle exceptions that occur in the left-hand
@@ -31,8 +33,13 @@ class AboutDataflow extends KoanSuite {
       s1 = ^3
       s2 = {!throw new RuntimeException!}
 
-    runScript(s(s1)).$ shouldBe __
-    runScript(s(s2)).$ shouldBe __
+    test(1) {
+      runScript(s(s1)).$ shouldBe __
+    }
+
+    test(2) {
+      runScript(s(s2)).$ shouldBe __
+    }
   }
 
   koan("""Dataflow can have any number of result-matching clauses, just
@@ -47,9 +54,17 @@ class AboutDataflow extends KoanSuite {
       s2 = ^"foo"
       s3 = ^2.2
 
-    runScript(s(s1)).$ shouldBe __
-    runScript(s(s2)).$ shouldBe __
-    runScript(s(s3)).$ shouldBe __
+    test(1) {
+      runScript(s(s1)).$ shouldBe __
+    }
+
+    test(2) {
+      runScript(s(s2)).$ shouldBe __
+    }
+
+    test(3) {
+      runScript(s(s3)).$ shouldBe __
+    }
   }
 
   koan("""Dataflow map is like dataflow, but its right-hand side
@@ -57,7 +72,9 @@ class AboutDataflow extends KoanSuite {
         | of the parent script""") {
     script s = {!1!} ~~(x: Int)~~^ x * 2
 
-    runScript(s).$ shouldBe Success(2)
+    test(1) {
+      runScript(s).$ shouldBe Success(2)
+    }
   }
 
   koan("""Dataflow map can also have multiple matching clauses""") {
@@ -65,8 +82,13 @@ class AboutDataflow extends KoanSuite {
       lhs ~~(x: Int   )~~^ x * 2
          +~~(x: Double)~~^ x * 3
 
-    runScript(s([^2  ])).$ shouldBe __
-    runScript(s([^2.0])).$ shouldBe __
+    test(1) {
+      runScript(s([^2  ])).$ shouldBe __
+    }
+
+    test(2) {
+      runScript(s([^2.0])).$ shouldBe __
+    }
   }
 
   koan("""Dataflow map has a shorthand version. Its right-hand side must
@@ -75,7 +97,9 @@ class AboutDataflow extends KoanSuite {
     def int2string(x: Int): String = x.toString
     script s = {!1!} ~~^ int2string
 
-    runScript(s).$ shouldBe __
+    test(1) {
+      runScript(s).$ shouldBe __
+    }  
   }
 
 }

@@ -17,7 +17,9 @@ class AboutAdvancedResultValues extends KoanSuite {
     script s = var i = 0
                [while(i < 3) {!i!}^^ {!i += 1!}]
 
-    runScript(s).$ shouldBe __
+    test(1) {
+      runScript(s).$ shouldBe __
+    }
   }
 
   koan("""The remark in the previous koan about the index of the
@@ -28,7 +30,9 @@ class AboutAdvancedResultValues extends KoanSuite {
                let i = 0
                [while(i < 3) {!i += 1!} {!i!}^^]
 
-    runScript(s).$ shouldBe __
+    test(1) {
+      runScript(s).$ shouldBe __
+    }
   }
 
   koan("""Double caret followed by a number (`^^1`, `^^2` etc) makes
@@ -37,7 +41,9 @@ class AboutAdvancedResultValues extends KoanSuite {
         | tuple.""") {
     script s = {!1!}^^2 {!2!}^^1
 
-    runScript(s).$ shouldBe __
+    test(1) {
+      runScript(s).$ shouldBe __
+    }
   }
 
   koan("""You can use all te above mentioned syntax with literals and
@@ -48,8 +54,13 @@ class AboutAdvancedResultValues extends KoanSuite {
 
       s2 = ^1^^1 ^2^^2
 
-    runScript(s1).$ shouldBe __
-    runScript(s2).$ shouldBe __
+    test(1) {
+      runScript(s1).$ shouldBe __
+    }
+
+    test(2) {
+      runScript(s2).$ shouldBe __
+    }
   }
   
 }
