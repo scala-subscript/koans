@@ -2,6 +2,7 @@ package subscript.koans.util
 
 import org.scalatest._
 import org.scalatest.events._
+import org.scalatest.exceptions.TestFailedException
 
 trait KoanSuite extends FunSuite with KoanPredef
                                  with Matchers {
@@ -20,6 +21,13 @@ trait KoanSuite extends FunSuite with KoanPredef
 
   def koan(name: String)(fun: => Unit) = test(name.stripMargin)(fun)
   
-  def test(id: Int)(fun: => Unit) = withClue(s"Test $id:")(fun)
+  def test(id: Int)(fun: => Unit) {
+    try fun
+    catch {
+      case _: TestFailedException => throw new TestFailedException(s"Test $id is wrong: think more on it!", 0)
+    }
+  }
+
+  def giveUp(id: Int)(fun: => Unit) = withClue(s"Test $id:")(fun)
 
 }

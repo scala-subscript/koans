@@ -18,28 +18,41 @@ class AboutAndParallelism extends KoanSuite with OperatorKoansHelper {
         | `d e` sequence, this parallelism in sequence with `f`.""") {
     script s = [b c & d e] f
 
-    runWithInput(s)()
-    activatedShouldBe(__)
+    test(1) {
+      runWithInput(s)()
+      activatedShouldBe(__)
+    }
 
-    runWithInput(s)(b)
-    activatedShouldBe(__)
+    test(2) {
+      runWithInput(s)(b)
+      activatedShouldBe(__)
+    }
 
-    runWithInput(s)(b, c)
-    activatedShouldBe(__)
+    test(3) {
+      runWithInput(s)(b, c)
+      activatedShouldBe(__)
+    }
 
-    runWithInput(s)(b, c, d, e)
-    activatedShouldBe(__)
+    test(4) {
+      runWithInput(s)(b, c, d, e)
+      activatedShouldBe(__)
+    }
+
   }
 
   koan("""And-parallel operator `&` doesn't succeed if at least
         | one of its children doesn't.""") {
     script s = [b c & d [-]] f
 
-    runWithInput(s)(d)
-    activatedShouldBe(__)
+    test(1) {
+      runWithInput(s)(d)
+      activatedShouldBe(__)
+    }
 
-    runWithInput(s)(b, c, d)
-    activatedShouldBe(__)
+    test(2) {
+      runWithInput(s)(b, c, d)
+      activatedShouldBe(__)
+    }
   }
 
   koan("""Non-strict and-parallelism operator `&&` behaves like `&`,
@@ -48,11 +61,15 @@ class AboutAndParallelism extends KoanSuite with OperatorKoansHelper {
         | operands.""") {
     script s = [b c && d [-]] f
 
-    runWithInput(s)()
-    activatedShouldBe(__)
+    test(1) {
+      runWithInput(s)()
+      activatedShouldBe(__)
+    }
 
-    runWithInput(s)(d)
-    activatedShouldBe(__)
+    test(2) {
+      runWithInput(s)(d)
+      activatedShouldBe(__)
+    }
   }
 
 }
