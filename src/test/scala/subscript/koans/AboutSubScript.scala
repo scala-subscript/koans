@@ -20,9 +20,11 @@ class AboutSubScript extends KoanSuite {
     
     var flag = false
     script foo = {!flag = true!}
-    runScript(foo)
 
-    flag shouldBe __
+    test(1) {
+      runScript(foo)
+      flag shouldBe __
+    }
   }
 
   koan("""Script bodies are always SubScript expressions - a sequence of
@@ -34,9 +36,11 @@ class AboutSubScript extends KoanSuite {
         | executed sequentialy. It is denoted as a space.""") {
     var i = 1
     script foo = {!i += 1!} {!i += 1!}
-    runScript(foo)
 
-    i shouldBe __
+    test(1) {
+      runScript(foo)
+      i shouldBe __
+    }
   }
 
   koan("""Scripts can call one another or Scala methods. Script calls and
@@ -47,8 +51,9 @@ class AboutSubScript extends KoanSuite {
     script b = {!i += 2!}
     def c = i += 3
 
-    runScript(foo)
-
-    i shouldBe __
+    test(1) {
+      runScript(foo)
+      i shouldBe __
+    }
   }
 }

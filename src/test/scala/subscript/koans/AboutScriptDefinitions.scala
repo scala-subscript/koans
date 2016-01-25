@@ -10,26 +10,35 @@ class AboutScriptDefinitions extends KoanSuite {
   koan("""Scripts' signatures are defined with same syntax as
         | ones of methods.""") {
     var i = 0
-    script s(x: Int) = {!i = x!}
-    runScript(s(10))
-    i shouldBe __
+    
+    test(1) {
+      script s(x: Int) = {!i = x!}
+      runScript(s(10))
+      i shouldBe __
+    }
 
-    script s2(x: Int, y: Int) = {!i = x + y!}
-    runScript(s2(10, 20))
-    i shouldBe __
+    test(2) {
+      script s2(x: Int, y: Int) = {!i = x + y!}
+      runScript(s2(10, 20))
+      i shouldBe __
+    }
 
-    script s3(x: Int)(y: Int) = {!i = x * y!}
-    runScript(s3(2)(3))
-    i shouldBe __
+    test(3) {
+      script s3(x: Int)(y: Int) = {!i = x * y!}
+      runScript(s3(2)(3))
+      i shouldBe __
+    }
   }
 
   koan("""Scripts can have return types. So far, SubScript is untyped,
         | so they all must be Any. More on script results in later koans.""") {
     var i = 0
     script s: Any = {!i = 10!}
-    runScript(s)
-
-    i shouldBe __
+    
+    test(1) {
+      runScript(s)
+      i shouldBe __
+    }
   }
 
   koan("""Scripts can be members of classes, objects and traits.
@@ -49,13 +58,17 @@ class AboutScriptDefinitions extends KoanSuite {
       override script bar = {!i = 20!}
     }
 
-    val bar = new Bar
-    runScript(bar.foo)
-    bar.i shouldBe __
+    test(1) {
+      val bar = new Bar
+      runScript(bar.foo)
+      bar.i shouldBe __
+    }
 
-    val foobar = new FooBar
-    runScript(foobar.foo)
-    foobar.i shouldBe __
+    test(2) {
+      val foobar = new FooBar
+      runScript(foobar.foo)
+      foobar.i shouldBe __
+    }
   }
 
   koan("""Scripts can be defined using a shorthand syntax.
@@ -70,9 +83,10 @@ class AboutScriptDefinitions extends KoanSuite {
       s2 = s1 s1
       s3 = s2 s2
 
-    runScript(s3)
-
-    i shouldBe __
+    test(1) {
+      runScript(s3)
+      i shouldBe __
+    }
   }
 
 }

@@ -11,16 +11,20 @@ class AboutEpsilonAndDelta extends KoanSuite with OperatorKoansHelper {
         | after activation. It signifies an ACP empty action.""") {
     script s = b [+] c
 
-    runWithInput(s)(b)
-    activatedShouldBe(__)
+    test(1) {
+      runWithInput(s)(b)
+      activatedShouldBe(__)
+    }
   }
 
   koan("""Delta, `[-]`, is a special operand that never succeeds.
         | It signifies an ACP deadlock.""") {
     script s = b [-] c
 
-    runWithInput(s)(b)
-    activatedShouldBe(__)
+    test(1) {
+      runWithInput(s)(b)
+      activatedShouldBe(__)
+    }
   }
 
 }

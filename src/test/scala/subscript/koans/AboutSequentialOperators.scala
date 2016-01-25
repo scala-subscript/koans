@@ -36,15 +36,19 @@ class AboutSequentialOperators extends KoanSuite with OperatorKoansHelper {
   {
     script s = b c d
 
-    runWithInput(s)(b, c)
-    activatedShouldBe(__)
+    test(1) {
+      runWithInput(s)(b, c)
+      activatedShouldBe(__)
+    }
   }
 
   koan("""`;` is also a sequential operator, equivalent to space.""") {
     script s = b; c; d
 
-    runWithInput(s)(b)
-    activatedShouldBe(__)
+    test(1) {
+      runWithInput(s)(b)
+      activatedShouldBe(__)
+    }
   }
 
   koan("""Line break is also a sequential operator, equivalent to space.
@@ -54,8 +58,10 @@ class AboutSequentialOperators extends KoanSuite with OperatorKoansHelper {
                c
                d
 
-    runWithInput(s)()
-    activatedShouldBe(__)
+    test(1) {
+      runWithInput(s)()
+      activatedShouldBe(__)
+    }
   }
 
 }
