@@ -7,15 +7,17 @@ import subscript.koans.util._
 
 class AboutAndParallelism extends KoanSuite with OperatorKoansHelper {
 
-  koan("""And-parallel operator `&` executes all its operands in parallel.
-        | It succeeds only if each of its children
-        | succeed - hence and-parallelism.
-        |
-        | `[` and `]` are parentheses specifying operators precedence.
-        |
-        | Space operator has the smallest precedence.
-        | In the following koan, `b c` sequence executes in parallel with
-        | `d e` sequence, this parallelism in sequence with `f`.""") {
+  koan(1)(
+    """And-parallel operator `&` executes all its operands in parallel.
+    | It succeeds only if each of its children
+    | succeed - hence and-parallelism.
+    |
+    | `[` and `]` are parentheses specifying operators precedence.
+    |
+    | Space operator has the smallest precedence.
+    | In the following koan, `b c` sequence executes in parallel with
+    | `d e` sequence, this parallelism in sequence with `f`."""
+  ) {
     script s = [b c & d e] f
 
     test(1) {
@@ -40,8 +42,10 @@ class AboutAndParallelism extends KoanSuite with OperatorKoansHelper {
 
   }
 
-  koan("""And-parallel operator `&` doesn't succeed if at least
-        | one of its children doesn't.""") {
+  koan(2)(
+    """And-parallel operator `&` doesn't succeed if at least
+    | one of its children doesn't."""
+  ) {
     script s = [b c & d [-]] f
 
     test(1) {
@@ -55,10 +59,12 @@ class AboutAndParallelism extends KoanSuite with OperatorKoansHelper {
     }
   }
 
-  koan("""Non-strict and-parallelism operator `&&` behaves like `&`,
-        | but if one of its children doesn't succeed, it will terminate
-        | without success immediately, terminating all its remaining
-        | operands.""") {
+  koan(3)(
+    """Non-strict and-parallelism operator `&&` behaves like `&`,
+    | but if one of its children doesn't succeed, it will terminate
+    | without success immediately, terminating all its remaining
+    | operands."""
+  ) {
     script s = [b c && d [-]] f
 
     test(1) {

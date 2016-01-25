@@ -7,8 +7,10 @@ import subscript.koans.util._
 
 class AboutConditionalOperators extends KoanSuite with OperatorKoansHelper {
 
-  koan("""`if` operator executes then part if its predicate (simple Scala
-        | expression) is true, otherwise - else part""") {
+  koan(1)(
+    """`if` operator executes then part if its predicate (simple Scala
+    | expression) is true, otherwise - else part"""
+  ) {
     script s(predicate: Boolean) = if predicate then b else c
 
     test(1) {
@@ -22,9 +24,11 @@ class AboutConditionalOperators extends KoanSuite with OperatorKoansHelper {
     }
   }
 
-  koan("""`do` operators works like `if`, but its predicate is a SubScript
-        | expression rather then Scala expression. If the predicate succeeds,
-        | `then` part is executed; if it ends without success - `else` part.""") {
+  koan(2)(
+    """`do` operators works like `if`, but its predicate is a SubScript
+    | expression rather then Scala expression. If the predicate succeeds,
+    | `then` part is executed; if it ends without success - `else` part."""
+  ) {
     script..
       s1 = do b then c else d
       s2 = do b [-] then c else d

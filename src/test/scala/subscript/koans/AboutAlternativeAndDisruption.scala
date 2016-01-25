@@ -7,9 +7,11 @@ import subscript.koans.util._
 
 class AboutAlternativeAndDisruption extends KoanSuite with OperatorKoansHelper {
 
-  koan("""Alternative operator `+` executes that of its operands which
-        | started first, excluding remaining ones as soon as the operand
-        | starts its execution.""") {
+  koan(1)(
+    """Alternative operator `+` executes that of its operands which
+    | started first, excluding remaining ones as soon as the operand
+    | starts its execution."""
+  ) {
     script s = [b c + d e + f g] h
 
     test(1) {
@@ -33,9 +35,11 @@ class AboutAlternativeAndDisruption extends KoanSuite with OperatorKoansHelper {
     }
   }
 
-  koan("""Disruption operator `/` terminates its left-hand side once its
-        | right-hand side starts execution. If left-hand side finishes its
-        | execution without disruption, right-hand side is excluded.""") {
+  koan(2)(
+    """Disruption operator `/` terminates its left-hand side once its
+    | right-hand side starts execution. If left-hand side finishes its
+    | execution without disruption, right-hand side is excluded."""
+  ) {
     script s = b c / d e
 
     test(1) {
