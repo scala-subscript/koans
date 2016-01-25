@@ -6,18 +6,19 @@ import subscript.Predef._
 import subscript.koans.util.KoanSuite
 
 class AboutSubScript extends KoanSuite {
-  koan("""Before using SubScript, you should define a top-level import of
-        | `subscript.language` (see top of this source file). You should also
-        | `import subscript.Predef._`.
-        | 
-        | Scripts are defined with a `script` keyword.
-        | Scala code blocks can be used in the script body
-        | in the `{! ... !}` braces.
-        | Scripts can be executed using the runScript() method.
-        |
-        | Fill in the blanks `__` in order to solve the koan.
-        | For example, in this exercise you need to replace `__` with `true`""") {
-    
+  koan(1)(
+    """Before using SubScript, you should define a top-level import of
+    | `subscript.language` (see top of this source file). You should also
+    | `import subscript.Predef._`.
+    | 
+    | Scripts are defined with a `script` keyword.
+    | Scala code blocks can be used in the script body
+    | in the `{! ... !}` braces.
+    | Scripts can be executed using the runScript() method.
+    |
+    | Fill in the blanks `__` in order to solve the koan.
+    | For example, in this exercise you need to replace `__` with `true`"""
+  ) {
     var flag = false
     script foo = {!flag = true!}
 

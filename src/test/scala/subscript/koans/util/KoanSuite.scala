@@ -19,8 +19,9 @@ trait KoanSuite extends FunSuite with KoanPredef
     }
   }
 
-  def koan(name: String)(fun: => Unit) = test(name.stripMargin)(fun)
-  
+  def koan         (name: String)(fun: => Unit) = test(name.stripMargin)(fun)
+  def koan(id: Int)(name: String)(fun: => Unit) = test(s"Koan $id"     )(fun)
+
   def test(id: Int)(fun: => Unit) {
     try fun
     catch {
