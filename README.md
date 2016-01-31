@@ -21,4 +21,4 @@ The instructions in the koans will be helpful for you.
 
 In case you can't solve a particular test, rename `test` to `giveUp` and the program will give you a clue on the next run.
 
-**IMPORTANT:** so far, SubScript works by rewriting the sources. This means error messages may point to wrong lines. Please be guided by koan and test ids (Koan 1, Test 1) to identify failing tests, not by the line number indicated in the error!
+**IMPORTANT:** Currently SubScript files are translated by a combination of a preprocessor and the normal Scala compiler. This implies that error messages that the Scala compiler generatess may point to wrong lines. Please be guided by koan and test ids (Koan 1, Test 1) to identify failing tests, not by the line number indicated in the error!
