@@ -7,58 +7,81 @@ import subscript.koans.util.KoanSuite
 
 class AboutSubScript extends KoanSuite {
   koan(1)(
-    """Before using SubScript, you should define a top-level import of
-    | `subscript.language` (see top of this source file). You should also
-    | `import subscript.Predef._`.
+    """
+    |To use SubScript in a file, it should have these two import statements:
+    |
+    | `import subscript.language`
+    | `import subscript.Predef._`
+    | See the top of this source file.
     | 
-    | Scripts are defined with a `script` keyword.
-    | Scala code blocks can be used in the script body
-    | in the `{! ... !}` braces.
+    | SubScript extends Scala with refinements that are called `scripts`.
+    | These are much like methods. Their definition starts with the
+    | keyword `script` rather than the keyword `def`.
+    |
+    | The Script body is a so called `script expression`.
+    | These are composed from several kinds of operators and terms.
+    | One such a kind of term is a so called `atomic action`.
+    | This is specified as a piece of regular Scala code,
+    | enclosed in a `{! ... !}` brace pair.
+    |
     | Scripts can be executed using the runScript() method.
     |
-    | Fill in the blanks `__` in order to solve the koan.
-    | For example, in this exercise you need to replace `__` with `true`"""
+    | To solve the koans, fill in the blanks `__`.
+    | For example, in this first koan you need to replace `__` with `true`
+    """
   ) {
-    var flag = false
-    script foo = {!flag = true!}
+    var    flag = false
+    script foo  = {! flag = true !}
 
-    test(1) {
-      runScript(foo)
-      flag shouldBe __
-    }
+    test(1) { runScript(foo); flag shouldBe __ }
   }
 
   koan(2)(
-    """Script bodies are always SubScript expressions - a sequence of
-    | operands bound by SubScript operators. Scala code blocks are
-    | operands. In previous koan, the expression consisted only of
-    | one operand.
+    """
+    | In the previous koan, the script expression consisted only of
+    | one operand: `{!flag = true!}`.
     |
-    | The most basic operator is a sequence - its operands are
-    | executed sequentialy. It is denoted as a space."""
+    | We can make a sequence of 2 such `atomic actions` using a sequential operator.
+    | There are three such sequential operators:
+    | - nothing (most often one or more spaces between terms on a single line).
+    |   This is unlike the white space operator in Scala: there it denotes function application
+    | - a semicolon (;). This is much like the meaning in Scala
+    | - a new line, for which about the same semicolon inference rules hold as in Scala
+    |
+    | Note that, like in Scala, the white space operator has a high priority,
+    | whereas the semicolon and the new line have a low priority.
+    | The new line has even a lower priority than the semicolon.
+    | This has some significance which will appear when Iterations are discussed.
+    """
   ) {
-    var i = 1
-    script foo = {!i += 1!} {!i += 1!}
+    var    i    = 0
+    script foo1 = {!i += 1!}{!  i += 1 !}
+    script foo2 = {!i += 1!} {! i += 1 !}
+    script foo3 = {!i += 1!};{! i += 1 !}
+    script foo4 = {!i += 1!}
+                  {!i += 1!}
 
-    test(1) {
-      runScript(foo)
-      i shouldBe __
-    }
+    test(1) { runScript(foo1); i shouldBe __ }
+    test(2) { runScript(foo2); i shouldBe __ }
+    test(3) { runScript(foo3); i shouldBe __ }
+    test(4) { runScript(foo4); i shouldBe __ }
   }
 
   koan(3)(
-    """Scripts can call one another or Scala methods. Script calls and
-    | method calls are also operands."""
+    """
+    | Other operands in script expressions are for instance
+    | script calls and method calls. Often these look the same:
+    """
   ) {
-    var i = 1
-    script foo = a b c
-    script a = {!i += 1!}
-    script b = {!i += 2!}
-    def c = i += 3
+    var    i   = 0
+    script a   = {! i += 1 !}
+    script b   = {! i += 2 !}
+    def    c   =    i += 3
 
-    test(1) {
-      runScript(foo)
-      i shouldBe __
-    }
+    script foo1 =             a b c
+    script foo2 = {! i = 0 !} a b c {! i += 1 !}
+
+    test(1) { runScript(foo1); i shouldBe __ }
+    test(2) { runScript(foo2); i shouldBe __ }
   }
 }
