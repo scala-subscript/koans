@@ -25,7 +25,7 @@ trait KoanSuite extends FunSuite with KoanPredef
   def test(id: Int)(fun: => Unit) {
     try fun
     catch {
-      case _: TestFailedException => throw new TestFailedException(s"Test $id is wrong: think more about it!", 0)
+      case _: TestFailedException => throw new TestFailedException(s"Test $id goes wrong: try again please.", 0)
     }
   }
 

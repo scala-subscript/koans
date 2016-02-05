@@ -7,19 +7,18 @@ class PathToEnlightenment extends Sequential(
 , new AboutScriptDefinitions
 
 , new AboutSequentialOperators
-//, new AboutExclusiveChoice
+, new AboutAlternativeComposition
 , new AboutEpsilonAndDelta
 
 , new AboutAndParallelism
 , new AboutOrParallelism
-, new AboutAlternativeAndDisruption // to be split
-//, new AboutDisruption
+, new AboutDisruption
 
 , new AboutConditionalOperators
 //, new AboutHereAndThere
 //, new AboutIterations // incl break, break?, ..., ..?
+//, new AboutParentheses // how to get rid of those: plus(a,b), call:syntax, semicolon, method calls, let.
 , new AboutAdvancedSyntax // ? still needed
-//, new AboutParentheses // how to get rid of those: call syntax, semicolon, method calls.
 
 //, new AboutAnnotations
 
