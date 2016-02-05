@@ -81,7 +81,7 @@ class AboutDataflow extends KoanSuite {
     script s = {!1!} ~~(x: Int)~~^ x * 2
 
     test(1) {
-      runScript(s).$ shouldBe Success(2)
+      runScript(s).$ shouldBe __
     }
   }
 
