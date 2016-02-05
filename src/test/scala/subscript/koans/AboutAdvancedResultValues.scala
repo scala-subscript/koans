@@ -11,9 +11,9 @@ class AboutAdvancedResultValues extends KoanSuite {
 
   koan(1)(
     """Double caret `^^` after an operand makes a result of a script
-    | to be `Seq[Any]` instead of `Any` (wrapped in a `Try` of course).
+    | to be `List[Any]` instead of `Any` (wrapped in a `Try` of course).
     | Each invocation of this operand will record its result to that
-    | `Seq`, and the result's index will be equal to the number of
+    | `List`, and the result's index will be equal to the number of
     | invocations this operand already had."""
   ) {
     script s = var i = 0

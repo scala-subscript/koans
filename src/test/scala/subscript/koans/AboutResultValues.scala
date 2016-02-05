@@ -39,7 +39,7 @@ class AboutResultValues extends KoanSuite {
   ) {
     script s = {!1!}
     test(1) {
-      runScript(s).$ shouldBe __
+      runScript(s).$ shouldBe Success(__)
     }
   }
 
@@ -48,7 +48,7 @@ class AboutResultValues extends KoanSuite {
   ) {
     script s = {!1!}^ {!2!}^
     test(1) {
-      runScript(s).$ shouldBe __
+      runScript(s).$ shouldBe Success(__)
     }
   }
 
@@ -58,7 +58,7 @@ class AboutResultValues extends KoanSuite {
   ) {
     script s = {!!} ^'r'
     test(1) {
-      runScript(s).$ shouldBe __
+      runScript(s).$ shouldBe Success(__)
     }
   }
 
