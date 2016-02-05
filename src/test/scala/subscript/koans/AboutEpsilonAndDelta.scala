@@ -31,23 +31,23 @@ class AboutEpsilonAndDelta extends KoanSuite with OperatorKoansHelper {
   ) {
     script a0 = b + [-] + c
     script a1 = b + [+] + c
-  //script an = b + []  + c Parse error, TBD
+    script an = b + []  + c
     script s0 = b   [-]   c
     script s1 = b   [+]   c
-  //script sn = b   []    c   Parse error, TBD
+    script sn = b   []    c
 
     test( 1) {runWithInput(a0)( ); activatedShouldBe(__)}
     test( 2) {runWithInput(a1)( ); activatedShouldBe(__)}
-  //test( 3) {runWithInput(an)( ); activatedShouldBe(__)}
+    test( 3) {runWithInput(an)( ); activatedShouldBe(__)}
     test( 4) {runWithInput(a0)(b); activatedShouldBe(__)}
     test( 5) {runWithInput(a1)(b); activatedShouldBe(__)}
-  //test( 6) {runWithInput(an)(b); activatedShouldBe(__)}
+    test( 6) {runWithInput(an)(b); activatedShouldBe(__)}
     test( 7) {runWithInput(s0)( ); activatedShouldBe(__)}
     test( 8) {runWithInput(s1)( ); activatedShouldBe(__)}
-  //test( 9) {runWithInput(sn)( ); activatedShouldBe(__)}
+    test( 9) {runWithInput(sn)( ); activatedShouldBe(__)}
     test(10) {runWithInput(s0)(b); activatedShouldBe(__)}
     test(11) {runWithInput(s1)(b); activatedShouldBe(__)}
-  //test(12) {runWithInput(sn)(b); activatedShouldBe(__)}
+    test(12) {runWithInput(sn)(b); activatedShouldBe(__)}
 
   }
 
