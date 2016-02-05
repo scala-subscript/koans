@@ -32,7 +32,7 @@ trait OperatorKoansHelper {this: Matchers =>
       }
 
       there.onDeactivate {
-        // println("Deactivated " + this)
+        // println("Deactivated " + this + "\n")
         activatedFlag = false
       }
     }: super.lifecycle
@@ -86,7 +86,7 @@ trait OperatorKoansHelper {this: Matchers =>
       var i = 0
       [
         while(i < input.size)
-        triggerWithin: 50, input(i)
+        triggerWithin: 500, input(i)
         let i += 1
       ]
       sleep: 1000
@@ -96,6 +96,7 @@ trait OperatorKoansHelper {this: Matchers =>
     triggerWithin(maxDelay: Long, t: RecordingTrigger) =
       var start = System.currentTimeMillis
       [while(!t.activatedFlag && System.currentTimeMillis - start <= maxDelay) sleep: 10]
+      // println("Triggering " + t)
       if System.currentTimeMillis - start <= maxDelay then t.trigger else sampleStopper.trigger
 
 }

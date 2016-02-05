@@ -45,11 +45,13 @@ class AboutMoreSpecialOperands extends KoanSuite with OperatorKoansHelper {
     script s = while(i < 2) b c {!i += 1!}
 
     test(1) {
+      i = 0
       runWithInput(s)(b, c)
       activatedShouldBe(___)
     }
 
     test(2) {
+      i = 0
       runWithInput(s)(b, c, b, c)
       activatedShouldBe(___)
     }
@@ -63,11 +65,13 @@ class AboutMoreSpecialOperands extends KoanSuite with OperatorKoansHelper {
     script s = b while(i < 2) c {!i += 1!}
 
     test(1) {
+      i = 0
       runWithInput(s)(b, c)
       activatedShouldBe(___)
     }
 
     test(2) {
+      i = 0
       runWithInput(s)(b, c, b, c)
       activatedShouldBe(___)
     }
