@@ -15,7 +15,8 @@ class AboutDisruption extends KoanSuite with OperatorKoansHelper {
     | The `+` operator does the same, but it also affects
     | operands to the right.
     |
-    | Also, like `+`, `|` and `||`, the `/` operator succeeds when any of its operands succeeds.
+    | Like `+`, `|` and `||`, the `/` operator is or-like:
+    | it succeeds when any of its operands succeeds.
     |
     | When activated, the `+` activates its operands.
     | As soon as an atomic action happens in one of its operands,
