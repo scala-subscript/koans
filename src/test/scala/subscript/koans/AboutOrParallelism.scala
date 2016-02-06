@@ -8,84 +8,85 @@ import subscript.koans.util._
 class AboutOrParallelism extends KoanSuite with OperatorKoansHelper {
 
   koan(1)(
-    """Non-strict or-parallel operator `||` executes its children in
-    | parallel. It succeeds if at least one of its operands does.
-    | After some of its operands has success, all the other ones
-    | are excluded (terminated)."""
+    """
+    | Next to the two and-parallel operators `&` and `&&`
+    | there are two or-parallel operators `|` and `||`.
+    | These are in a way analogous to the boolean operators
+    | with the same symbols.
+    |
+    | Of these four `|` is barely used. It acts much like `&`,
+    | only it has success when any of its operands has success,
+    | rather than each of its operands for `&`
+    """
   ) {
-    script..
-      s1 = [b c || d   e] f
-      s2 = [b c || d [-]] f
-    
-    test(1) {
-      runWithInput(s1)()
-      activatedShouldBe(___)
-    }
+    script s = [b c | d e] f
 
-    test(2) {
-      runWithInput(s1)(b, c)
-      activatedShouldBe(___)
-    }
-
-    test(3) {
-      runWithInput(s2)(d, ___)
-      activatedShouldBe(f)
-    }
+    test(1) {runWithInput(s)(       ); activatedShouldBe(__)}
+    test(2) {runWithInput(s)(b      ); activatedShouldBe(__)}
+    test(3) {runWithInput(s)(b,c    ); activatedShouldBe(__)}
+    test(4) {runWithInput(s)(b,c,d  ); activatedShouldBe(__)}
+    test(5) {runWithInput(s)(b,c,d,e); activatedShouldBe(__)}
   }
 
   koan(2)(
-    """Strict or-parallel operator `|` behaves like `||`, but it
-    | does not exclude its operands upon first success.
+    """
+    | When at least one of the children has a success,
+    | the `|` succeeds as well. This occurs as well each time when
+    | an atomic action happens in another operand
     |
-    | Some operators can have success multiple times; when we say
-    | that an operator succeeded, we don't necessarily mean that it
-    | terminated. `|` is one of such operators: it succeeds once
-    | one of its operands does, but continues to execute remaining ones.
-    |
-    | Note also that a sequential operators' behaviour on success of
-    | its operand is to execute the next operand (if there is such) and
-    | exclude all the currently executing operands (if there are such).
-    |
-    | `|` is not used often, so don't worry if it seems too complicated."""
+    """
   ) {
-    script..
-      s1 =  b c | d e
-      s2 = [b c | d e] f
+    script s = [b | [ [+] + d e ] ] f
 
-    test(1) {
-      runWithInput(s1)()
-      activatedShouldBe(b, d)
-    }
+    test(1) {runWithInput(s)(     ); activatedShouldBe(__)}
+    test(2) {runWithInput(s)(b    ); activatedShouldBe(__)}
+    test(3) {runWithInput(s)(  d  ); activatedShouldBe(__)}
+    test(4) {runWithInput(s)(  d,e); activatedShouldBe(__)}
+    test(5) {runWithInput(s)(b,d  ); activatedShouldBe(__)}
+    test(6) {runWithInput(s)(b,d,e); activatedShouldBe(__)}
+  }
 
-    test(2) {
-      runWithInput(s1)(___)
-      activatedShouldBe(d)
-    }
+  koan(3)(
+    """
+    | To turn a process in something that succeeds 'at all moments'
+    | set it or-parallel to the empty process
+    |
+    """
+  ) {
+    script s = [ [+] | b c d ] f
 
-    test(3) {
-      runWithInput(s1)(b, c, d)
-      activatedShouldBe(___)
-    }
+    test(1) {runWithInput(s)(     ); activatedShouldBe(__)}
+    test(2) {runWithInput(s)(b    ); activatedShouldBe(__)}
+    test(3) {runWithInput(s)(b,c  ); activatedShouldBe(__)}
+    test(4) {runWithInput(s)(b,c,d); activatedShouldBe(__)}
+  }
 
-    test(4) {
-      runWithInput(s1)(___)
-      activatedShouldBe()
-    }
+  koan(4)(
+    """
+    |
+    | `||` is the so-called 'strong-and-parallel' operator.
+    | It acts much like `|`, except that whenever one of the
+    | operands terminates with a success
+    | then all other operands are excluded (terminated).
+    |
+    | `||` seems to be more often used than `&`.
+    | It is often very handy to let a processes terminate as soon
+    | as a parallel process terminates successfully.
+    """
+  ) {
+    script s1 = [b c ||        d   ] f
+    script s2 = [b   || [[+] + d e]] f
 
+    test( 1) {runWithInput(s1)(     ); activatedShouldBe(__)}
+    test( 2) {runWithInput(s1)(b    ); activatedShouldBe(__)}
+    test( 3) {runWithInput(s1)(b,  d); activatedShouldBe(__)}
+    test( 4) {runWithInput(s1)(b,c,d); activatedShouldBe(__)}
+    test( 5) {runWithInput(s1)(    d); activatedShouldBe(__)}
 
-    test(5) {
-      runWithInput(s2)()
-      activatedShouldBe(___)
-    }
-
-    test(6) {
-      runWithInput(s2)(___)
-      activatedShouldBe(d, f)
-    }
-
-    test(7) {
-      runWithInput(s2)(b, c, f)
-      activatedShouldBe(___)
-    }
+    test( 6) {runWithInput(s2)(     ); activatedShouldBe(__)}
+    test( 7) {runWithInput(s2)(b    ); activatedShouldBe(__)}
+    test( 8) {runWithInput(s2)(  d  ); activatedShouldBe(__)}
+    test( 9) {runWithInput(s2)(  d,b); activatedShouldBe(__)}
+    test(10) {runWithInput(s2)(  d,e); activatedShouldBe(__)}
   }
 }

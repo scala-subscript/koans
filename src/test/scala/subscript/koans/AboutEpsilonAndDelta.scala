@@ -53,7 +53,12 @@ class AboutEpsilonAndDelta extends KoanSuite with OperatorKoansHelper {
 
   koan(2)(
     """
-    | With the empty process you can express optional behaviour:
+    | With the empty process you can express optional behaviour.
+    |
+    | Note that a process `[+]+b` may succeed twice:
+    | once immediately after activation, and another time,
+    | after `b` has happened. This is a weird property of SubScript
+    | that you may need to get used to. But it is extremely powerful.
     """
   ) {
     script opt = [+]+b; c

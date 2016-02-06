@@ -29,7 +29,8 @@ class AboutAndParallelism extends KoanSuite with OperatorKoansHelper {
     test(1) {runWithInput(s)(       ); activatedShouldBe(__)}
     test(2) {runWithInput(s)(b      ); activatedShouldBe(__)}
     test(3) {runWithInput(s)(b,c    ); activatedShouldBe(__)}
-    test(4) {runWithInput(s)(b,c,d,e); activatedShouldBe(__)}
+    test(4) {runWithInput(s)(b,c,d  ); activatedShouldBe(__)}
+    test(5) {runWithInput(s)(b,c,d,e); activatedShouldBe(__)}
   }
 
   koan(2)(
@@ -40,10 +41,10 @@ class AboutAndParallelism extends KoanSuite with OperatorKoansHelper {
   ) {
     script s = [b c & d [-]] f
 
-    test(1) {runWithInput(s)(       ); activatedShouldBe(__)}
-    test(2) {runWithInput(s)(      d); activatedShouldBe(__)}
-    test(3) {runWithInput(s)(b,    d); activatedShouldBe(__)}
-    test(4) {runWithInput(s)(b, c, d); activatedShouldBe(__)}
+    test(1) {runWithInput(s)(     ); activatedShouldBe(__)}
+    test(2) {runWithInput(s)(    d); activatedShouldBe(__)}
+    test(3) {runWithInput(s)(b,  d); activatedShouldBe(__)}
+    test(4) {runWithInput(s)(b,c,d); activatedShouldBe(__)}
   }
 
   koan(3)(
@@ -57,14 +58,13 @@ class AboutAndParallelism extends KoanSuite with OperatorKoansHelper {
     | is also a stronger version of `&`, in the sense that
     | it stops evaluation when one operand (the left hand side)
     | evaluates false.
-    |
     """
   ) {
     script s = [b c && d [-]] f
 
-    test(1) {runWithInput(s)(       ); activatedShouldBe(__)}
-    test(2) {runWithInput(s)(      d); activatedShouldBe(__)}
-    test(3) {runWithInput(s)(b,    d); activatedShouldBe(__)}
-    test(4) {runWithInput(s)(b, c, d); activatedShouldBe(__)}
+    test(1) {runWithInput(s)(     ); activatedShouldBe(__)}
+    test(2) {runWithInput(s)(    d); activatedShouldBe(__)}
+    test(3) {runWithInput(s)(b,  d); activatedShouldBe(__)}
+    test(4) {runWithInput(s)(b,c,d); activatedShouldBe(__)}
   }
 }
