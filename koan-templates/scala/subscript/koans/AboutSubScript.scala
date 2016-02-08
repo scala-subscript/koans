@@ -35,7 +35,7 @@ class AboutSubScript extends KoanSuite {
     var    flag = false
     script foo  = {! flag = true !}
 
-    test(1) { runScript(foo); flag shouldBe __ }
+    test(1) { runScript(foo); flag shouldBe __`true` }
   }
 
   koan(2)(
@@ -52,7 +52,7 @@ class AboutSubScript extends KoanSuite {
     var    i    = 0
     script foo = {! i += 1 !} {! i += 1 !}
 
-    test(1) { runScript(foo); i shouldBe __ }
+    test(1) { runScript(foo); i shouldBe __`2` }
   }
 
   koan(3)(
@@ -71,7 +71,7 @@ class AboutSubScript extends KoanSuite {
     script foo1 =             a b c
     script foo2 = {! i = 0 !} a b c {! i += 1 !}
 
-    test(1) { runScript(foo1); i shouldBe __ }
-    test(2) { runScript(foo2); i shouldBe __ }
+    test(1) { runScript(foo1); i shouldBe __`6` }
+    test(2) { runScript(foo2); i shouldBe __`7` }
   }
 }
