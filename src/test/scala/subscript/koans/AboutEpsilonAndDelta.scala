@@ -116,6 +116,11 @@ class AboutEpsilonAndDelta extends KoanSuite with OperatorKoansHelper {
     |   [] @  x = x
     |    x  @ []= x
     |
+    | An activated script expression may succeed multiple times.
+    | Upon activation, if it had not succeeded after its last atomic action had happened,
+    | then such deactivation is called a failure. In a way it ends as if it has the deadlock
+    | process [-] at the end.
+    |
     """
   ) {
   }
