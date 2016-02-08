@@ -4,7 +4,7 @@ They are a compilation of small exercises designed to teach you SubScript.
 
 To get started with the project:
 
-1. [Download](#) and unzip the latest release. *Note: so far, there were no releases. In order to test the project out, clone it (`git clone https://github.com/scala-subscript/koans.git`) and turn the solutions off (`./solutions off` from the root of the project).
+1. [Download](#) and unzip the latest release. *Note: so far, there were no releases. In order to test the project out, clone it (`git clone https://github.com/scala-subscript/koans.git`) and turn the solutions off (`./solutions off` from the root of the project).*
 2. Go to the root directory: `cd koans`
 3. Open the SBT console: `sbt`
 4. Run the koans from SBT console: `test-only PathToEnlightenment`
