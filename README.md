@@ -34,3 +34,5 @@ The koans are located at `/koan-templates` directory, at the root of the project
 In order to test your project with solutions in place, first run `./solutions on` from the root of the project. This will copy the koans with solutions to the test directory - you can enter the sbt console and work with them as described above.
 
 In order to test the project without solutions, run `./solutions off`.
+
+In order to release a new version of the koans, execute `./release version`, where `version` is your version. A zip will be generated under `distribution` folder ready to be published.
