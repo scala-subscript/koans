@@ -65,6 +65,7 @@ trait OperatorKoansHelper {this: Matchers =>
   val f = new RecordingTrigger("f")
   val g = new RecordingTrigger("g")
   val h = new RecordingTrigger("h")
+  val S = new RecordingTrigger("S")
 
   val `___` = new RecordingTrigger("___")
 
@@ -80,7 +81,7 @@ trait OperatorKoansHelper {this: Matchers =>
     runWithInputScript(s: ScriptNode[Any], input: Seq[RecordingTrigger]) =
       input.foreach(t => t.activatedFlag = false)
       let runIsOver = false
-      [s [-] / sampleStopper reset()] || fireTriggers: input
+      [s S [-] / sampleStopper reset()] || fireTriggers: input
 
     fireTriggers(input: Seq[RecordingTrigger]) =
       var i = 0
