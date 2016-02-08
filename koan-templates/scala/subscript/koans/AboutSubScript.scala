@@ -29,7 +29,7 @@ class AboutSubScript extends KoanSuite {
     | Scripts can be executed using the runScript() method.
     |
     | To solve the koans, fill in the blanks `__`.
-    | For example, in this first koan you need to replace `__
+    | For example, in this first koan you need to replace `__` with `true`
     """
   ) {
     var    flag = false
