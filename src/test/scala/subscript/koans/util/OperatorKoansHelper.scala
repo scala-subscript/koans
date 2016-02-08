@@ -55,7 +55,7 @@ trait OperatorKoansHelper {this: Matchers =>
     else c should contain only (ts: _*)
   }
   def succeededShouldBe(ts: Any*) = checkCollection(succeeded, ts)
-  def activatedShouldBe(ts: Any*) = checkCollection(activated, ts)
+  def thenActivatedOrSuccess(ts: Any*) = checkCollection(activated, ts)
 
 
   val b = new RecordingTrigger("b")

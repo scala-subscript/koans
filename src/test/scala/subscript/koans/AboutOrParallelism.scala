@@ -21,11 +21,11 @@ class AboutOrParallelism extends KoanSuite with OperatorKoansHelper {
   ) {
     script s = [b c | d e] f
 
-    test(1) {runWithInput(s)(       ); activatedShouldBe(__)}
-    test(2) {runWithInput(s)(b      ); activatedShouldBe(__)}
-    test(3) {runWithInput(s)(b,c    ); activatedShouldBe(__)}
-    test(4) {runWithInput(s)(b,c,d  ); activatedShouldBe(__)}
-    test(5) {runWithInput(s)(b,c,d,e); activatedShouldBe(__)}
+    test(1) {runWithInput(s)(       ); thenActivatedOrSuccess(__)}
+    test(2) {runWithInput(s)(b      ); thenActivatedOrSuccess(__)}
+    test(3) {runWithInput(s)(b,c    ); thenActivatedOrSuccess(__)}
+    test(4) {runWithInput(s)(b,c,d  ); thenActivatedOrSuccess(__)}
+    test(5) {runWithInput(s)(b,c,d,e); thenActivatedOrSuccess(__)}
   }
 
   koan(2)(
@@ -38,12 +38,12 @@ class AboutOrParallelism extends KoanSuite with OperatorKoansHelper {
   ) {
     script s = [b | [ [+] + d e ] ] f
 
-    test(1) {runWithInput(s)(     ); activatedShouldBe(__)}
-    test(2) {runWithInput(s)(b    ); activatedShouldBe(__)}
-    test(3) {runWithInput(s)(  d  ); activatedShouldBe(__)}
-    test(4) {runWithInput(s)(  d,e); activatedShouldBe(__)}
-    test(5) {runWithInput(s)(b,d  ); activatedShouldBe(__)}
-    test(6) {runWithInput(s)(b,d,e); activatedShouldBe(__)}
+    test(1) {runWithInput(s)(     ); thenActivatedOrSuccess(__)}
+    test(2) {runWithInput(s)(b    ); thenActivatedOrSuccess(__)}
+    test(3) {runWithInput(s)(  d  ); thenActivatedOrSuccess(__)}
+    test(4) {runWithInput(s)(  d,e); thenActivatedOrSuccess(__)}
+    test(5) {runWithInput(s)(b,d  ); thenActivatedOrSuccess(__)}
+    test(6) {runWithInput(s)(b,d,e); thenActivatedOrSuccess(__)}
   }
 
   koan(3)(
@@ -55,10 +55,10 @@ class AboutOrParallelism extends KoanSuite with OperatorKoansHelper {
   ) {
     script s = [ [+] | b c d ] f
 
-    test(1) {runWithInput(s)(     ); activatedShouldBe(__)}
-    test(2) {runWithInput(s)(b    ); activatedShouldBe(__)}
-    test(3) {runWithInput(s)(b,c  ); activatedShouldBe(__)}
-    test(4) {runWithInput(s)(b,c,d); activatedShouldBe(__)}
+    test(1) {runWithInput(s)(     ); thenActivatedOrSuccess(__)}
+    test(2) {runWithInput(s)(b    ); thenActivatedOrSuccess(__)}
+    test(3) {runWithInput(s)(b,c  ); thenActivatedOrSuccess(__)}
+    test(4) {runWithInput(s)(b,c,d); thenActivatedOrSuccess(__)}
   }
 
   koan(4)(
@@ -77,16 +77,16 @@ class AboutOrParallelism extends KoanSuite with OperatorKoansHelper {
     script s1 = [b c ||        d   ] f
     script s2 = [b   || [[+] + d e]] f
 
-    test( 1) {runWithInput(s1)(     ); activatedShouldBe(__)}
-    test( 2) {runWithInput(s1)(b    ); activatedShouldBe(__)}
-    test( 3) {runWithInput(s1)(b,  d); activatedShouldBe(__)}
-    test( 4) {runWithInput(s1)(b,c,d); activatedShouldBe(__)}
-    test( 5) {runWithInput(s1)(    d); activatedShouldBe(__)}
+    test( 1) {runWithInput(s1)(     ); thenActivatedOrSuccess(__)}
+    test( 2) {runWithInput(s1)(b    ); thenActivatedOrSuccess(__)}
+    test( 3) {runWithInput(s1)(b,  d); thenActivatedOrSuccess(__)}
+    test( 4) {runWithInput(s1)(b,c,d); thenActivatedOrSuccess(__)}
+    test( 5) {runWithInput(s1)(    d); thenActivatedOrSuccess(__)}
 
-    test( 6) {runWithInput(s2)(     ); activatedShouldBe(__)}
-    test( 7) {runWithInput(s2)(b    ); activatedShouldBe(__)}
-    test( 8) {runWithInput(s2)(  d  ); activatedShouldBe(__)}
-    test( 9) {runWithInput(s2)(  d,b); activatedShouldBe(__)}
-    test(10) {runWithInput(s2)(  d,e); activatedShouldBe(__)}
+    test( 6) {runWithInput(s2)(     ); thenActivatedOrSuccess(__)}
+    test( 7) {runWithInput(s2)(b    ); thenActivatedOrSuccess(__)}
+    test( 8) {runWithInput(s2)(  d  ); thenActivatedOrSuccess(__)}
+    test( 9) {runWithInput(s2)(  d,b); thenActivatedOrSuccess(__)}
+    test(10) {runWithInput(s2)(  d,e); thenActivatedOrSuccess(__)}
   }
 }

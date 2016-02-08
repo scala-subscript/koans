@@ -14,7 +14,7 @@ class AboutMoreSpecialOperands extends KoanSuite with OperatorKoansHelper {
     
     test(1) {
       runWithInput(s)(b, c, b, c, b)
-      activatedShouldBe(___)
+      thenActivatedOrSuccess(___)
     }
   }
 
@@ -28,12 +28,12 @@ class AboutMoreSpecialOperands extends KoanSuite with OperatorKoansHelper {
 
     test(1) {  
       runWithInput(s1)(b, c)
-      activatedShouldBe(___)
+      thenActivatedOrSuccess(___)
     }
 
     test(2) {
       runWithInput(s2)(b, c, b)
-      activatedShouldBe(___)
+      thenActivatedOrSuccess(___)
     }
   }
 
@@ -47,13 +47,13 @@ class AboutMoreSpecialOperands extends KoanSuite with OperatorKoansHelper {
     test(1) {
       i = 0
       runWithInput(s)(b, c)
-      activatedShouldBe(___)
+      thenActivatedOrSuccess(___)
     }
 
     test(2) {
       i = 0
       runWithInput(s)(b, c, b, c)
-      activatedShouldBe(___)
+      thenActivatedOrSuccess(___)
     }
   }
 
@@ -67,13 +67,13 @@ class AboutMoreSpecialOperands extends KoanSuite with OperatorKoansHelper {
     test(1) {
       i = 0
       runWithInput(s)(b, c)
-      activatedShouldBe(___)
+      thenActivatedOrSuccess(___)
     }
 
     test(2) {
       i = 0
       runWithInput(s)(b, c, b, c)
-      activatedShouldBe(___)
+      thenActivatedOrSuccess(___)
     }
   }
 
@@ -84,7 +84,7 @@ class AboutMoreSpecialOperands extends KoanSuite with OperatorKoansHelper {
 
     test(1) {
       runWithInput(s)()
-      activatedShouldBe(___)
+      thenActivatedOrSuccess(___)
     }
   }
 
@@ -97,17 +97,17 @@ class AboutMoreSpecialOperands extends KoanSuite with OperatorKoansHelper {
 
     test(1) {
       runWithInput(s)()
-      activatedShouldBe(___)
+      thenActivatedOrSuccess(___)
     }
 
     test(2) {
       runWithInput(s)(c)
-      activatedShouldBe(___)
+      thenActivatedOrSuccess(___)
     }
 
     test(3) {
       runWithInput(s)(b)
-      activatedShouldBe(___)
+      thenActivatedOrSuccess(___)
     }
   }
 

@@ -25,12 +25,12 @@ class AboutDisruption extends KoanSuite with OperatorKoansHelper {
   ) {
     script s = b c / d e
 
-    test(1) {runWithInput(s)(   ); activatedShouldBe(___)}
-    test(2) {runWithInput(s)(b,c); activatedShouldBe(___)}
-    test(3) {runWithInput(s)(d  ); activatedShouldBe(___)}
-    test(4) {runWithInput(s)(b,d); activatedShouldBe(___)}
-    test(5) {runWithInput(s)(d,e); activatedShouldBe(___)}
-    test(6) {runWithInput(s)(___); activatedShouldBe(c,d)}
+    test(1) {runWithInput(s)(   ); thenActivatedOrSuccess(___)}
+    test(2) {runWithInput(s)(b,c); thenActivatedOrSuccess(___)}
+    test(3) {runWithInput(s)(d  ); thenActivatedOrSuccess(___)}
+    test(4) {runWithInput(s)(b,d); thenActivatedOrSuccess(___)}
+    test(5) {runWithInput(s)(d,e); thenActivatedOrSuccess(___)}
+    test(6) {runWithInput(s)(___); thenActivatedOrSuccess(c,d)}
   }
 
 }

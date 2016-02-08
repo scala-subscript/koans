@@ -20,10 +20,10 @@ class AboutAlternativeComposition extends KoanSuite with OperatorKoansHelper {
   ) {
     script s = b c + d e + f g
 
-    test(1) {runWithInput(s)(   ); activatedShouldBe(___)}
-    test(2) {runWithInput(s)( b ); activatedShouldBe(___)}
-    test(3) {runWithInput(s)(___); activatedShouldBe( e )}
-    test(4) {runWithInput(s)(___); activatedShouldBe(   )}
+    test(1) {runWithInput(s)(   ); thenActivatedOrSuccess(___)}
+    test(2) {runWithInput(s)( b ); thenActivatedOrSuccess(___)}
+    test(3) {runWithInput(s)(___); thenActivatedOrSuccess( e )}
+    test(4) {runWithInput(s)(___); thenActivatedOrSuccess(   )}
   }
   koan(2)(
       """
@@ -44,6 +44,6 @@ class AboutAlternativeComposition extends KoanSuite with OperatorKoansHelper {
     script s2 =   b c + d e
                   h
 
-    test(1) {runWithInput(s1)(___); activatedShouldBe( h )}
+    test(1) {runWithInput(s1)(___); thenActivatedOrSuccess( h )}
   }
 }
