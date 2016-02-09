@@ -13,4 +13,5 @@ cp -r koan-templates/* src/test
 if [ "$FLAG" = "$OFF" ]; then GROUP=1; else GROUP=2; fi
 
 # Process the files
+export LC_ALL=C
 find src/test -type f -print0 | xargs -0 sed -E -i '' -e "s/(_{2,})\`(.*)\`/\\$GROUP/g"
