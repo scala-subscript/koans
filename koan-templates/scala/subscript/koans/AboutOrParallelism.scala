@@ -17,51 +17,35 @@ class AboutOrParallelism extends KoanSuite with OperatorKoansHelper {
     | Of these four `|` is barely used. It acts much like `&`,
     | only it has success when any of its operands has success,
     | rather than each of its operands for `&`
+    |
+    | Reminder: specify an 'S' when the script has success!
     """
   ) {
-    script s = [b c | d e] f
+    script s = b c | d e
 
-    test(1) {runWithInput(s)(       ); thenActivatedOrSuccess(__)}
-    test(2) {runWithInput(s)(b      ); thenActivatedOrSuccess(__)}
-    test(3) {runWithInput(s)(b,c    ); thenActivatedOrSuccess(__)}
-    test(4) {runWithInput(s)(b,c,d  ); thenActivatedOrSuccess(__)}
-    test(5) {runWithInput(s)(b,c,d,e); thenActivatedOrSuccess(__)}
+    test(1) {runWithInput(s)(       ); thenActivatedOrSuccess(__`b,d`)}
+    test(2) {runWithInput(s)(b      ); thenActivatedOrSuccess(__`c,d`)}
+    test(3) {runWithInput(s)(b,c    ); thenActivatedOrSuccess(__`S,d`)}
+    test(4) {runWithInput(s)(b,c,d  ); thenActivatedOrSuccess(__`S,e`)}
+    test(5) {runWithInput(s)(b,c,d,e); thenActivatedOrSuccess(__`S`)}
   }
 
   koan(2)(
-    """
-    | When at least one of the children has a success,
-    | the `|` succeeds as well. This occurs as well each time when
-    | an atomic action happens in another operand
-    |
-    """
-  ) {
-    script s = [b | [ [+] + d e ] ] f
-
-    test(1) {runWithInput(s)(     ); thenActivatedOrSuccess(__)}
-    test(2) {runWithInput(s)(b    ); thenActivatedOrSuccess(__)}
-    test(3) {runWithInput(s)(  d  ); thenActivatedOrSuccess(__)}
-    test(4) {runWithInput(s)(  d,e); thenActivatedOrSuccess(__)}
-    test(5) {runWithInput(s)(b,d  ); thenActivatedOrSuccess(__)}
-    test(6) {runWithInput(s)(b,d,e); thenActivatedOrSuccess(__)}
-  }
-
-  koan(3)(
     """
     | To turn a process in something that succeeds 'at all moments'
     | set it or-parallel to the empty process
     |
     """
   ) {
-    script s = [ [+] | b c d ] f
+    script s =  [+] | b c d
 
-    test(1) {runWithInput(s)(     ); thenActivatedOrSuccess(__)}
-    test(2) {runWithInput(s)(b    ); thenActivatedOrSuccess(__)}
-    test(3) {runWithInput(s)(b,c  ); thenActivatedOrSuccess(__)}
-    test(4) {runWithInput(s)(b,c,d); thenActivatedOrSuccess(__)}
+    test(1) {runWithInput(s)(     ); thenActivatedOrSuccess(__`b,S`)}
+    test(2) {runWithInput(s)(b    ); thenActivatedOrSuccess(__`c,S`)}
+    test(3) {runWithInput(s)(b,c  ); thenActivatedOrSuccess(__`d,S`)}
+    test(4) {runWithInput(s)(b,c,d); thenActivatedOrSuccess(__`S`)}
   }
 
-  koan(4)(
+  koan(3)(
     """
     |
     | `||` is the so-called 'strong-and-parallel' operator.
@@ -74,19 +58,17 @@ class AboutOrParallelism extends KoanSuite with OperatorKoansHelper {
     | as a parallel process terminates successfully.
     """
   ) {
-    script s1 = [b c ||        d   ] f
-    script s2 = [b   || [[+] + d e]] f
+    script s1 = b c   || d
+    script s2 = b [-] || d
 
-    test( 1) {runWithInput(s1)(     ); thenActivatedOrSuccess(__)}
-    test( 2) {runWithInput(s1)(b    ); thenActivatedOrSuccess(__)}
-    test( 3) {runWithInput(s1)(b,  d); thenActivatedOrSuccess(__)}
-    test( 4) {runWithInput(s1)(b,c,d); thenActivatedOrSuccess(__)}
-    test( 5) {runWithInput(s1)(    d); thenActivatedOrSuccess(__)}
+    test( 1) {runWithInput(s1)(     ); thenActivatedOrSuccess(__`b,d`)}
+    test( 2) {runWithInput(s1)(b    ); thenActivatedOrSuccess(__`c,d`)}
+    test( 3) {runWithInput(s1)(b,  d); thenActivatedOrSuccess(__`S`)}
+    test( 4) {runWithInput(s1)(b,c  ); thenActivatedOrSuccess(__`S`)}
+    test( 5) {runWithInput(s1)(    d); thenActivatedOrSuccess(__`S`)}
 
-    test( 6) {runWithInput(s2)(     ); thenActivatedOrSuccess(__)}
-    test( 7) {runWithInput(s2)(b    ); thenActivatedOrSuccess(__)}
-    test( 8) {runWithInput(s2)(  d  ); thenActivatedOrSuccess(__)}
-    test( 9) {runWithInput(s2)(  d,b); thenActivatedOrSuccess(__)}
-    test(10) {runWithInput(s2)(  d,e); thenActivatedOrSuccess(__)}
+    test( 6) {runWithInput(s2)(     ); thenActivatedOrSuccess(__`b,d`)}
+    test( 7) {runWithInput(s2)(b    ); thenActivatedOrSuccess(__`d`)}
+    test( 8) {runWithInput(s2)(  d  ); thenActivatedOrSuccess(__`S`)}
   }
 }

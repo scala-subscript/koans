@@ -23,14 +23,14 @@ class AboutAlternativeComposition extends KoanSuite with OperatorKoansHelper {
   ) {
     script s = b c + d e + f g
 
-    test(1) {runWithInput(s)(   ); thenActivatedOrSuccess(___)}
-    test(2) {runWithInput(s)( b ); thenActivatedOrSuccess(___)}
-    test(3) {runWithInput(s)(___); thenActivatedOrSuccess( e )}
-    test(4) {runWithInput(s)(___); thenActivatedOrSuccess( S )}
+    test(1) {runWithInput(s)(   ); thenActivatedOrSuccess(___`b,d,f`)}
+    test(2) {runWithInput(s)( b ); thenActivatedOrSuccess(___`c`)}
+    test(3) {runWithInput(s)(___`d`); thenActivatedOrSuccess( e )}
+    test(4) {runWithInput(s)(___`b,c`); thenActivatedOrSuccess( S )}
   }
   koan(2)(
       """
-      | Like in math, the priority of the multiplication operator as whitespece (or even less!)
+      | Like in math, the priority of the multiplication operator as whitespace
       | is higher than the priority of `+`.
       | In math you can parentheses to group subexpressions, as in '(1+2)*3'.
       | SubScript offers brackets for that purpose, as in `[x+y]z`
@@ -41,12 +41,14 @@ class AboutAlternativeComposition extends KoanSuite with OperatorKoansHelper {
       | The following 3 scripts are therefore equivalent:
       """
   ) {
-    script s0 = [ b c + d e ] h
-    script s1 =   b c + d e ; h
+    script s1 = [ b c + d e ] f
+    script s2 =   b c + d e ; f
 
-    script s2 =   b c + d e
-                  h
+    script s3 =   b c + d e
+                  f
 
-    test(1) {runWithInput(s1)(___); thenActivatedOrSuccess( h )}
+    test(1) {runWithInput(s1)(___`b,c`); thenActivatedOrSuccess( f )}
+    test(2) {runWithInput(s2)(___`d,e`); thenActivatedOrSuccess( f )}
+    test(3) {runWithInput(s3)(___`b,c`); thenActivatedOrSuccess( f )}
   }
 }

@@ -22,15 +22,17 @@ class AboutAndParallelism extends KoanSuite with OperatorKoansHelper {
     |
     | In the following koan, activation of the call to `f` at the end is meant
     | to signal whether the preceding `&` operator has success
-    | """
+    |
+    | Reminder: specify an 'S' when the script has success!
+    """
   ) {
-    script s = [b c & d e] f
+    script s = b c & d e
 
-    test(1) {runWithInput(s)(       ); thenActivatedOrSuccess(__)}
-    test(2) {runWithInput(s)(b      ); thenActivatedOrSuccess(__)}
-    test(3) {runWithInput(s)(b,c    ); thenActivatedOrSuccess(__)}
-    test(4) {runWithInput(s)(b,c,d  ); thenActivatedOrSuccess(__)}
-    test(5) {runWithInput(s)(b,c,d,e); thenActivatedOrSuccess(__)}
+    test(1) {runWithInput(s)(       ); thenActivatedOrSuccess(__`b,d`)}
+    test(2) {runWithInput(s)(b      ); thenActivatedOrSuccess(__`c,d`)}
+    test(3) {runWithInput(s)(b,c    ); thenActivatedOrSuccess(__`d`)}
+    test(4) {runWithInput(s)(b,c,d  ); thenActivatedOrSuccess(__`e`)}
+    test(5) {runWithInput(s)(b,c,d,e); thenActivatedOrSuccess(__`S`)}
   }
 
   koan(2)(
@@ -39,12 +41,12 @@ class AboutAndParallelism extends KoanSuite with OperatorKoansHelper {
     | without having success, then `&` cannot succeed any more.
     """
   ) {
-    script s = [b c & d [-]] f
+    script s = b c & d [-]
 
-    test(1) {runWithInput(s)(     ); thenActivatedOrSuccess(__)}
-    test(2) {runWithInput(s)(    d); thenActivatedOrSuccess(__)}
-    test(3) {runWithInput(s)(b,  d); thenActivatedOrSuccess(__)}
-    test(4) {runWithInput(s)(b,c,d); thenActivatedOrSuccess(__)}
+    test(1) {runWithInput(s)(     ); thenActivatedOrSuccess(__`b,d`)}
+    test(2) {runWithInput(s)(    d); thenActivatedOrSuccess(__`b`)}
+    test(3) {runWithInput(s)(b,  d); thenActivatedOrSuccess(__`c`)}
+    test(4) {runWithInput(s)(b,c,d); thenActivatedOrSuccess(__` `)}
   }
 
   koan(3)(
@@ -60,11 +62,11 @@ class AboutAndParallelism extends KoanSuite with OperatorKoansHelper {
     | evaluates false.
     """
   ) {
-    script s = [b c && d [-]] f
+    script s = b c && d [-]
 
-    test(1) {runWithInput(s)(     ); thenActivatedOrSuccess(__)}
-    test(2) {runWithInput(s)(    d); thenActivatedOrSuccess(__)}
-    test(3) {runWithInput(s)(b,  d); thenActivatedOrSuccess(__)}
-    test(4) {runWithInput(s)(b,c,d); thenActivatedOrSuccess(__)}
+    test(1) {runWithInput(s)(     ); thenActivatedOrSuccess(__`b,d`)}
+    test(2) {runWithInput(s)(    d); thenActivatedOrSuccess(__` `)}
+    test(3) {runWithInput(s)(b,  d); thenActivatedOrSuccess(__` `)}
+    test(4) {runWithInput(s)(b,c,d); thenActivatedOrSuccess(__` `)}
   }
 }

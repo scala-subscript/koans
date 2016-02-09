@@ -19,9 +19,9 @@ class AboutScriptDefinitions extends KoanSuite {
     script s2(x: Int, y: Int) = {! i = x+y !}
     script s3(x: Int)(y: Int) = {! i = x*y !}
 
-    test(1) { runScript(s1(1)   ); i shouldBe __ }
-    test(2) { runScript(s2(1, 2)); i shouldBe __ }
-    test(3) { runScript(s3(2)(3)); i shouldBe __ }
+    test(1) { runScript(s1(1)   ); i shouldBe __`1` }
+    test(2) { runScript(s2(1, 2)); i shouldBe __`3` }
+    test(3) { runScript(s3(2)(3)); i shouldBe __`6` }
   }
 
   koan(2)(
@@ -39,7 +39,7 @@ class AboutScriptDefinitions extends KoanSuite {
     var i = 0
     script s: Any = {! i = 1 !}
     
-    test(1) { runScript(s); i shouldBe __ }
+    test(1) { runScript(s); i shouldBe __`1` }
   }
 
   koan(3)(
@@ -58,8 +58,8 @@ class AboutScriptDefinitions extends KoanSuite {
     class Bar1 extends Foo { override script bar = {! i = 1 !} }
     class Bar2 extends Foo { override script bar = {! i = 2 !} }
 
-    test(1) {val bar1 = new Bar1; runScript(bar1.foo); bar1.i shouldBe __ }
-    test(2) {val bar2 = new Bar2; runScript(bar2.foo); bar2.i shouldBe __ }
+    test(1) {val bar1 = new Bar1; runScript(bar1.foo); bar1.i shouldBe __`1` }
+    test(2) {val bar2 = new Bar2; runScript(bar2.foo); bar2.i shouldBe __`2` }
   }
 
   koan(4)(
@@ -88,7 +88,7 @@ class AboutScriptDefinitions extends KoanSuite {
       s2 = s1 s1
       s3 = s2 s2
 
-    test(1) {runScript(s3); i shouldBe __ }
+    test(1) {runScript(s3); i shouldBe __`4` }
   }
 
 }

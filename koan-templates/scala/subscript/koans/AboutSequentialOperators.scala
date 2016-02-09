@@ -30,11 +30,11 @@ class AboutSequentialOperators extends KoanSuite with OperatorKoansHelper {
     script foo5 = {! i += 1 !}
                   {! i += 1 !}
 
-    test(1) { runScript(foo1); i shouldBe __ }
-    test(2) { runScript(foo2); i shouldBe __ }
-    test(3) { runScript(foo3); i shouldBe __ }
-    test(4) { runScript(foo4); i shouldBe __ }
-    test(5) { runScript(foo5); i shouldBe __ }
+    test(1) { runScript(foo1); i shouldBe __`2` }
+    test(2) { runScript(foo2); i shouldBe __`4` }
+    test(3) { runScript(foo3); i shouldBe __`6` }
+    test(4) { runScript(foo4); i shouldBe __`8` }
+    test(5) { runScript(foo5); i shouldBe __`10` }
   }
 
   koan(2)(
@@ -74,11 +74,11 @@ class AboutSequentialOperators extends KoanSuite with OperatorKoansHelper {
       s1 = b  c  d
       s2 = b; c; d
 
-    test(1) { runWithInput(s1)(     ); thenActivatedOrSuccess( __ ) }
-    test(2) { runWithInput(s1)(b    ); thenActivatedOrSuccess( __ ) }
-    test(3) { runWithInput(s1)(b,c  ); thenActivatedOrSuccess( __ ) }
-    test(4) { runWithInput(s1)(b,c,d); thenActivatedOrSuccess( __ ) }
-    test(5) { runWithInput(s2)(b,c  ); thenActivatedOrSuccess( __ ) }
+    test(1) { runWithInput(s1)(     ); thenActivatedOrSuccess( __`b` ) }
+    test(2) { runWithInput(s1)(b    ); thenActivatedOrSuccess( __`c` ) }
+    test(3) { runWithInput(s1)(b,c  ); thenActivatedOrSuccess( __`d` ) }
+    test(4) { runWithInput(s1)(b,c,d); thenActivatedOrSuccess( __`S` ) }
+    test(5) { runWithInput(s2)(b,c  ); thenActivatedOrSuccess( __`d` ) }
   }
 
   koan(3)(

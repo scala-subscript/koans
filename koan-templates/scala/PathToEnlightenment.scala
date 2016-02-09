@@ -3,12 +3,14 @@ import org.scalatest._
 import subscript.koans._
 
 class PathToEnlightenment extends Sequential(
+
   new AboutSubScript
 , new AboutScriptDefinitions
 
 , new AboutSequentialOperators
 , new AboutAlternativeComposition
-, new AboutEpsilonAndDelta
+,
+  new AboutEpsilonAndDelta
 
 , new AboutAndParallelism
 , new AboutOrParallelism
