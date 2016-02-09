@@ -23,10 +23,10 @@ class AboutConditionalOperators extends KoanSuite with OperatorKoansHelper {
     script s1(predicate: Boolean) = if predicate then b
     script s2(predicate: Boolean) = if predicate then b else c
 
-    test(1) {runWithInput(s1( true))(); activatedShouldBe(___)}
-    test(2) {runWithInput(s1(false))(); activatedShouldBe(___)}
-    test(3) {runWithInput(s2( true))(); activatedShouldBe(___)}
-    test(4) {runWithInput(s2(false))(); activatedShouldBe(___)}
+    test(1) {runWithInput(s1( true))(); thenActivatedOrSuccess(___)}
+    test(2) {runWithInput(s1(false))(); thenActivatedOrSuccess(___)}
+    test(3) {runWithInput(s2( true))(); thenActivatedOrSuccess(___)}
+    test(4) {runWithInput(s2(false))(); thenActivatedOrSuccess(___)}
   }
 
   koan(2)(
@@ -56,12 +56,12 @@ class AboutConditionalOperators extends KoanSuite with OperatorKoansHelper {
       se0  = do b [-]        else d
       se1  = do b            else d
 
-    test(1) {runWithInput(st0 )(b); activatedShouldBe(___)}
-    test(2) {runWithInput(st1 )(b); activatedShouldBe(___)}
-    test(3) {runWithInput(ste0)(b); activatedShouldBe(___)}
-    test(4) {runWithInput(ste1)(b); activatedShouldBe(___)}
-    test(5) {runWithInput(se0 )(b); activatedShouldBe(___)}
-    test(6) {runWithInput(se1 )(b); activatedShouldBe(___)}
+    test(1) {runWithInput(st0 )(b); thenActivatedOrSuccess(___)}
+    test(2) {runWithInput(st1 )(b); thenActivatedOrSuccess(___)}
+    test(3) {runWithInput(ste0)(b); thenActivatedOrSuccess(___)}
+    test(4) {runWithInput(ste1)(b); thenActivatedOrSuccess(___)}
+    test(5) {runWithInput(se0 )(b); thenActivatedOrSuccess(___)}
+    test(6) {runWithInput(se1 )(b); thenActivatedOrSuccess(___)}
   }
 
 }

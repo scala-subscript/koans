@@ -26,11 +26,11 @@ class AboutAndParallelism extends KoanSuite with OperatorKoansHelper {
   ) {
     script s = [b c & d e] f
 
-    test(1) {runWithInput(s)(       ); activatedShouldBe(__)}
-    test(2) {runWithInput(s)(b      ); activatedShouldBe(__)}
-    test(3) {runWithInput(s)(b,c    ); activatedShouldBe(__)}
-    test(4) {runWithInput(s)(b,c,d  ); activatedShouldBe(__)}
-    test(5) {runWithInput(s)(b,c,d,e); activatedShouldBe(__)}
+    test(1) {runWithInput(s)(       ); thenActivatedOrSuccess(__)}
+    test(2) {runWithInput(s)(b      ); thenActivatedOrSuccess(__)}
+    test(3) {runWithInput(s)(b,c    ); thenActivatedOrSuccess(__)}
+    test(4) {runWithInput(s)(b,c,d  ); thenActivatedOrSuccess(__)}
+    test(5) {runWithInput(s)(b,c,d,e); thenActivatedOrSuccess(__)}
   }
 
   koan(2)(
@@ -41,10 +41,10 @@ class AboutAndParallelism extends KoanSuite with OperatorKoansHelper {
   ) {
     script s = [b c & d [-]] f
 
-    test(1) {runWithInput(s)(     ); activatedShouldBe(__)}
-    test(2) {runWithInput(s)(    d); activatedShouldBe(__)}
-    test(3) {runWithInput(s)(b,  d); activatedShouldBe(__)}
-    test(4) {runWithInput(s)(b,c,d); activatedShouldBe(__)}
+    test(1) {runWithInput(s)(     ); thenActivatedOrSuccess(__)}
+    test(2) {runWithInput(s)(    d); thenActivatedOrSuccess(__)}
+    test(3) {runWithInput(s)(b,  d); thenActivatedOrSuccess(__)}
+    test(4) {runWithInput(s)(b,c,d); thenActivatedOrSuccess(__)}
   }
 
   koan(3)(
@@ -62,9 +62,9 @@ class AboutAndParallelism extends KoanSuite with OperatorKoansHelper {
   ) {
     script s = [b c && d [-]] f
 
-    test(1) {runWithInput(s)(     ); activatedShouldBe(__)}
-    test(2) {runWithInput(s)(    d); activatedShouldBe(__)}
-    test(3) {runWithInput(s)(b,  d); activatedShouldBe(__)}
-    test(4) {runWithInput(s)(b,c,d); activatedShouldBe(__)}
+    test(1) {runWithInput(s)(     ); thenActivatedOrSuccess(__)}
+    test(2) {runWithInput(s)(    d); thenActivatedOrSuccess(__)}
+    test(3) {runWithInput(s)(b,  d); thenActivatedOrSuccess(__)}
+    test(4) {runWithInput(s)(b,c,d); thenActivatedOrSuccess(__)}
   }
 }

@@ -16,14 +16,17 @@ class AboutAlternativeComposition extends KoanSuite with OperatorKoansHelper {
     | When activated, the `+` activates its operands.
     | As soon as an atomic action happens in one of its operands,
     | all the others are excluded, so that their subgraphs are deactivated.
+    |
+    | Reminder: "thenActivatedOrSuccess(S)" means that
+    | no actions are active, and the script may terminate successfully
     """
   ) {
     script s = b c + d e + f g
 
-    test(1) {runWithInput(s)(   ); activatedShouldBe(___)}
-    test(2) {runWithInput(s)( b ); activatedShouldBe(___)}
-    test(3) {runWithInput(s)(___); activatedShouldBe( e )}
-    test(4) {runWithInput(s)(___); activatedShouldBe(   )}
+    test(1) {runWithInput(s)(   ); thenActivatedOrSuccess(___)}
+    test(2) {runWithInput(s)( b ); thenActivatedOrSuccess(___)}
+    test(3) {runWithInput(s)(___); thenActivatedOrSuccess( e )}
+    test(4) {runWithInput(s)(___); thenActivatedOrSuccess( S )}
   }
   koan(2)(
       """
@@ -44,6 +47,6 @@ class AboutAlternativeComposition extends KoanSuite with OperatorKoansHelper {
     script s2 =   b c + d e
                   h
 
-    test(1) {runWithInput(s1)(___); activatedShouldBe( h )}
+    test(1) {runWithInput(s1)(___); thenActivatedOrSuccess( h )}
   }
 }

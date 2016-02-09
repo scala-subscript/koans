@@ -61,19 +61,6 @@ class AboutAdvancedResultValues extends KoanSuite {
   }
 
   koan(4)(
-    """You can combine the above mentioned syntax with literals and
-    | vars if you first prefix those with `^`.
-    """
-  ) {
-    script..
-      s1 = var i = 0; while(i<3) ^i^^ let i+=1
-      s2 = ^1^^1 ^2^^2
-
-    test(1) {runScript(s1).$ shouldBe Success(__)}
-    test(2) {runScript(s2).$ shouldBe Success(__)}
-  }
-  
-  koan(4)(
     """
     | You can even create lists of tuples concisely
     """

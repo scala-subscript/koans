@@ -27,6 +27,16 @@ class AboutEpsilonAndDelta extends KoanSuite with OperatorKoansHelper {
     | But more operators will be introduced later.
     | Some of these will be "logially and-like" (see below for the exact meaning);
     | for these the neutral process behaves like [+]; for the others it behaves like [-]
+    |
+    | Note that when a script may succeed, there should be an 'S' in the thenActivatedOrSuccess parameters.
+    |
+    | E.g. consider the script a = b + [+]
+    | This may do a `b`, but it also succeeds because of the empty process `[+]`
+    | Therefore the following will hold:
+    |
+    |    runWithInput(a)(); thenActivatedOrSuccess(b,S)
+    |
+    |
     """
   ) {
     script a0 = b + [-] + c
@@ -36,18 +46,18 @@ class AboutEpsilonAndDelta extends KoanSuite with OperatorKoansHelper {
     script s1 = b   [+]   c
     script sn = b   []    c
 
-    test( 1) {runWithInput(a0)( ); activatedShouldBe(__)}
-    test( 2) {runWithInput(a1)( ); activatedShouldBe(__)}
-    test( 3) {runWithInput(an)( ); activatedShouldBe(__)}
-    test( 4) {runWithInput(a0)(b); activatedShouldBe(__)}
-    test( 5) {runWithInput(a1)(b); activatedShouldBe(__)}
-    test( 6) {runWithInput(an)(b); activatedShouldBe(__)}
-    test( 7) {runWithInput(s0)( ); activatedShouldBe(__)}
-    test( 8) {runWithInput(s1)( ); activatedShouldBe(__)}
-    test( 9) {runWithInput(sn)( ); activatedShouldBe(__)}
-    test(10) {runWithInput(s0)(b); activatedShouldBe(__)}
-    test(11) {runWithInput(s1)(b); activatedShouldBe(__)}
-    test(12) {runWithInput(sn)(b); activatedShouldBe(__)}
+    test( 1) {runWithInput(a0)( ); thenActivatedOrSuccess(__)}
+    test( 2) {runWithInput(a1)( ); thenActivatedOrSuccess(__)}
+    test( 3) {runWithInput(an)( ); thenActivatedOrSuccess(__)}
+    test( 4) {runWithInput(a0)(b); thenActivatedOrSuccess(__)}
+    test( 5) {runWithInput(a1)(b); thenActivatedOrSuccess(__)}
+    test( 6) {runWithInput(an)(b); thenActivatedOrSuccess(__)}
+    test( 7) {runWithInput(s0)( ); thenActivatedOrSuccess(__)}
+    test( 8) {runWithInput(s1)( ); thenActivatedOrSuccess(__)}
+    test( 9) {runWithInput(sn)( ); thenActivatedOrSuccess(__)}
+    test(10) {runWithInput(s0)(b); thenActivatedOrSuccess(__)}
+    test(11) {runWithInput(s1)(b); thenActivatedOrSuccess(__)}
+    test(12) {runWithInput(sn)(b); thenActivatedOrSuccess(__)}
 
   }
 
@@ -63,10 +73,10 @@ class AboutEpsilonAndDelta extends KoanSuite with OperatorKoansHelper {
   ) {
     script opt = [+]+b; c
 
-    test(1) {runWithInput(opt)(   ); activatedShouldBe(__)}
-    test(2) {runWithInput(opt)(b  ); activatedShouldBe(__)}
-    test(2) {runWithInput(opt)(c  ); activatedShouldBe(__)}
-    test(3) {runWithInput(opt)(b,c); activatedShouldBe(__)}
+    test(1) {runWithInput(opt)(   ); thenActivatedOrSuccess(__)}
+    test(2) {runWithInput(opt)(b  ); thenActivatedOrSuccess(__)}
+    test(2) {runWithInput(opt)(c  ); thenActivatedOrSuccess(__)}
+    test(3) {runWithInput(opt)(b,c); thenActivatedOrSuccess(__)}
   }
 
   koan(3)(

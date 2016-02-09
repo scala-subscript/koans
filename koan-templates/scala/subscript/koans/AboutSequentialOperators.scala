@@ -55,14 +55,15 @@ class AboutSequentialOperators extends KoanSuite with OperatorKoansHelper {
     |
     | In this koan, `runWithInput` runs a script with certain input; thereafter
     | something may be still activated in the call graph.
-    | It is up to you to answer what that is, in a call to `activatedShouldBe`
+    | It is up to you to answer what that is, in a call to `thenActivatedOrSuccess`
     |
     | E.g., suppose `script s1 = b  c  d`,
     | then for `runWithInput(s1)(b,c)`
-    | you should provide the answer `activatedShouldBe(d)`.
+    | you should provide the answer `thenActivatedOrSuccess(d)`.
     |
-    | If there are more applicable activated operands, separate those by a comma, as in `activatedShouldBe(d,e)`
-    | If you think no operands are activated leave the list empty: `activatedShouldBe()`.
+    | If there are multiple activated operands, separate those by a comma, as in `thenActivatedOrSuccess(d,e)`
+    | If the script may successfully terminate then provide an 'S', as in `thenActivatedOrSuccess(S)`.
+    | else if you think no operands are activated leave the list empty: `thenActivatedOrSuccess()`.
     |
     | All these methods and operands are defined at the KoanSuite trait.
     | This current class extends from that trait;
@@ -73,11 +74,11 @@ class AboutSequentialOperators extends KoanSuite with OperatorKoansHelper {
       s1 = b  c  d
       s2 = b; c; d
 
-    test(1) { runWithInput(s1)(     ); activatedShouldBe( __ ) }
-    test(2) { runWithInput(s1)(b    ); activatedShouldBe( __ ) }
-    test(3) { runWithInput(s1)(b,c  ); activatedShouldBe( __ ) }
-    test(4) { runWithInput(s1)(b,c,d); activatedShouldBe( __ ) }
-    test(5) { runWithInput(s2)(b,c  ); activatedShouldBe( __ ) }
+    test(1) { runWithInput(s1)(     ); thenActivatedOrSuccess( __ ) }
+    test(2) { runWithInput(s1)(b    ); thenActivatedOrSuccess( __ ) }
+    test(3) { runWithInput(s1)(b,c  ); thenActivatedOrSuccess( __ ) }
+    test(4) { runWithInput(s1)(b,c,d); thenActivatedOrSuccess( __ ) }
+    test(5) { runWithInput(s2)(b,c  ); thenActivatedOrSuccess( __ ) }
   }
 
   koan(3)(

@@ -1,0 +1,11 @@
+# Args
+VERSION="$1"
+CONTENTS="README.md build.sbt project src"
+
+# Prepare
+./solutions off
+rm -r project/project project/target
+mkdir distribution
+
+# Do the work
+zip -r "distribution/subscript-koans-$VERSION.zip" $CONTENTS
