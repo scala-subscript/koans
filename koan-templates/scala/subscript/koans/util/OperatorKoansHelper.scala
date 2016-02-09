@@ -87,10 +87,10 @@ trait OperatorKoansHelper {this: Matchers =>
       var i = 0
       [
         while(i < input.size)
-        triggerWithin: 500, input(i)
+        triggerWithin: 51, input(i)
         let i += 1
       ]
-      sleep: 1000
+      sleep: 50
       let runIsOver = true
 
     // Waits for the trigger script to be activated, but only for maxDelay

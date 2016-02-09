@@ -19,7 +19,7 @@ You'll see all your completed koans colored in green and the koan suite to be wo
 This means you need to work on AboutSubScript koan suite, Koan 1, Test 1. Find it at `src/test/scala/subscript/koans/` folder, open it and make the tests pass.
 The instructions in the koans will be helpful for you.
 
-In case you can't solve a particular test, rename `test` to `giveUp` and the program will give you a clue on the next run.
+In case you can't solve a particular test, rename `test` to `show` and the program will give you a clue on the next run.
 
 If you want to skip some koans, you can comment them out in `src/test/PathToEnlightenment.scala`.
 

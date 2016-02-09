@@ -7,3 +7,9 @@ libraryDependencies += "org.scalactic" %% "scalactic" % "2.2.6"
 libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.6" % "test"
 
 testOptions in Test += Tests.Argument("-oC")
+
+lazy val solutionsOn = taskKey[Unit]("Turn the solutions on")
+
+solutionsOn := {"./solutions on"!}
+
+testOnly <<= (testOnly in Test) dependsOn solutionsOn
