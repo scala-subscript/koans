@@ -74,9 +74,9 @@ class AboutEpsilonAndDelta extends KoanSuite with OperatorKoansHelper {
     script opt = [+]+b; c
 
     test(1) {runWithInput(opt)(   ); thenActivatedOrSuccess(__`b,c`)}
-    giveUp(2) {runWithInput(opt)(b  ); thenActivatedOrSuccess(__`c`)}
-    test(2) {runWithInput(opt)(c  ); thenActivatedOrSuccess(__`S`)}
-    test(3) {runWithInput(opt)(b,c); thenActivatedOrSuccess(__`S`)}
+    test(2) {runWithInput(opt)(b  ); thenActivatedOrSuccess(__`c`)}
+    test(3) {runWithInput(opt)(c  ); thenActivatedOrSuccess(__`S`)}
+    test(4) {runWithInput(opt)(b,c); thenActivatedOrSuccess(__`S`)}
   }
 
   koan(3)(

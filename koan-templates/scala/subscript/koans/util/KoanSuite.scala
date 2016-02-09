@@ -29,6 +29,6 @@ trait KoanSuite extends FunSuite with KoanPredef
     }
   }
 
-  def giveUp(id: Int)(fun: => Unit) = withClue(s"Test $id:")(fun)
+  def show(id: Int)(fun: => Unit) = withClue(s"Test $id:")(fun)
 
 }
