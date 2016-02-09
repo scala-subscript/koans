@@ -21,7 +21,7 @@ class AboutDataflow extends KoanSuite {
       a = ^3
 
     test(1) {
-      runScript(s).$ shouldBe __
+      runScript(s).$ shouldBe Success(__`5`)
     }
   }
 
@@ -38,11 +38,11 @@ class AboutDataflow extends KoanSuite {
       s2 = {!throw new RuntimeException!}
 
     test(1) {
-      runScript(s(s1)).$ shouldBe __
+      runScript(s(s1)).$ shouldBe Success(__`5`)
     }
 
     test(2) {
-      runScript(s(s2)).$ shouldBe __
+      runScript(s(s2)).$ shouldBe Success(__`"Exception happened!"`)
     }
   }
 
@@ -61,15 +61,15 @@ class AboutDataflow extends KoanSuite {
       s3 = ^2.2
 
     test(1) {
-      runScript(s(s1)).$ shouldBe __
+      runScript(s(s1)).$ shouldBe Success(__`3`)
     }
 
     test(2) {
-      runScript(s(s2)).$ shouldBe __
+      runScript(s(s2)).$ shouldBe Success(__`"Result: foo"`)
     }
 
     test(3) {
-      runScript(s(s3)).$ shouldBe __
+      runScript(s(s3)).$ shouldBe Success(__`4.4`)
     }
   }
 
@@ -81,7 +81,7 @@ class AboutDataflow extends KoanSuite {
     script s = {!1!} ~~(x: Int)~~^ x * 2
 
     test(1) {
-      runScript(s).$ shouldBe __
+      runScript(s).$ shouldBe Success(__`2`)
     }
   }
 
@@ -93,11 +93,11 @@ class AboutDataflow extends KoanSuite {
          +~~(x: Double)~~^ x * 3
 
     test(1) {
-      runScript(s([^2  ])).$ shouldBe __
+      runScript(s([^2  ])).$ shouldBe Success(__`4`)
     }
 
     test(2) {
-      runScript(s([^2.0])).$ shouldBe __
+      runScript(s([^2.0])).$ shouldBe Success(__`6.0`)
     }
   }
 
@@ -110,7 +110,7 @@ class AboutDataflow extends KoanSuite {
     script s = {!1!} ~~^ int2string
 
     test(1) {
-      runScript(s).$ shouldBe __
+      runScript(s).$ shouldBe Success(__`"1"`)
     }  
   }
 

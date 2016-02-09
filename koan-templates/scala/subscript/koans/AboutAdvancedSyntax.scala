@@ -14,7 +14,7 @@ class AboutAdvancedSyntax extends KoanSuite {
 
     test(1) {
       runScript(s)
-      a shouldBe __
+      a shouldBe __`1`
     }
   }
 
@@ -27,7 +27,7 @@ class AboutAdvancedSyntax extends KoanSuite {
 
     test(1) {           
       runScript(s)
-      a shouldBe __
+      a shouldBe __`2`
     }
   }
 
@@ -39,7 +39,7 @@ class AboutAdvancedSyntax extends KoanSuite {
 
     test(1) {
       runScript(s)
-      a shouldBe __
+      a shouldBe __`3`
     }
   }
 }
