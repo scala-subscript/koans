@@ -29,6 +29,7 @@ trait OperatorKoansHelper {this: Matchers =>
       there.onExclude {
         // println("Excluded " + this)
         if (!runIsOver) activated -= this
+        activatedFlag = false
       }
 
       there.onDeactivate {
@@ -80,6 +81,7 @@ trait OperatorKoansHelper {this: Matchers =>
   script..
     runWithInputScript(s: ScriptNode[Any], input: Seq[RecordingTrigger]) =
       input.foreach(t => t.activatedFlag = false)
+      let S.activatedFlag = false
       let runIsOver = false
       [s S [-] / sampleStopper reset()] || fireTriggers: input
 
@@ -87,17 +89,21 @@ trait OperatorKoansHelper {this: Matchers =>
       var i = 0
       [
         while(i < input.size)
-        triggerWithin: 51, input(i)
+        triggerWithin: 500, input(i)
         let i += 1
       ]
-      sleep: 50
+      noMessagesBeforeMe
       let runIsOver = true
 
     // Waits for the trigger script to be activated, but only for maxDelay
     triggerWithin(maxDelay: Long, t: RecordingTrigger) =
       var start = System.currentTimeMillis
-      [while(!t.activatedFlag && System.currentTimeMillis - start <= maxDelay) sleep: 10]
-      // println("Triggering " + t)
-      if System.currentTimeMillis - start <= maxDelay then t.trigger else sampleStopper.trigger
+      noMessagesBeforeMe
+      t.trigger
 
+    noMessagesBeforeMe =
+      var flag = false
+      {!flag = here.scriptExecutor.msgQueue.collection.exists(_.node.index < here.index)!}      
+      while(flag)
+      sleep: 10
 }
