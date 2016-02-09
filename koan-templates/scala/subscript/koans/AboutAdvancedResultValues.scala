@@ -29,7 +29,7 @@ class AboutAdvancedResultValues extends KoanSuite {
   ) {
     script s = var i = 0; while(i<3) {!i!}^^ {!i += 1!}
 
-    test(1) {runScript(s).$ shouldBe Success(__)}
+    test(1) {runScript(s).$ shouldBe Success(List(__`0,1,2`))}
   }
 
   koan(2)(
@@ -41,7 +41,7 @@ class AboutAdvancedResultValues extends KoanSuite {
     script s = var i = 0; while(i<4)            {!i!}^^ {!i += 1!}
                let i = 0; while(i<3) {!i += 1!} {!i!}^^
 
-    test(1) {runScript(s).$ shouldBe Success(__)}
+    test(1) {runScript(s).$ shouldBe Success(__`List(1,2,2,3)`)}
   }
 
   koan(3)(
@@ -56,8 +56,8 @@ class AboutAdvancedResultValues extends KoanSuite {
     script s1 = {!1!}^^1 {!2!}^^2
     script s2 = {!1!}^^2 {!2!}^^1
 
-    test(1) {runScript(s1).$ shouldBe Success(__)}
-    test(2) {runScript(s2).$ shouldBe Success(__)}
+    test(1) {runScript(s1).$ shouldBe Success(__`(1,2)`)}
+    test(2) {runScript(s2).$ shouldBe Success(__`(2,1)`)}
   }
 
   koan(4)(
@@ -68,9 +68,9 @@ class AboutAdvancedResultValues extends KoanSuite {
     script..
       s = var i= 0
           var j=10
-          while(i<3) [^i^^1 ^j^^2]^^2  {i+=1; j-=1; }   //   TBD: does not compile
+          while(i<3) [^i^^1 ^j^^2]^^2  {! i+=1; j-=1 !}
 
-    test(1) {runScript(s).$ shouldBe Success(__)}
+    test(1) {runScript(s).$ shouldBe Success(List(__`(0,10),(1,9),(2,8)`))}
   }
 
 }

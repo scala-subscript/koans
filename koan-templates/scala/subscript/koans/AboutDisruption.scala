@@ -21,16 +21,19 @@ class AboutDisruption extends KoanSuite with OperatorKoansHelper {
     | When activated, the `+` activates its operands.
     | As soon as an atomic action happens in one of its operands,
     | all the others to the left are excluded, so that their subgraphs are deactivated.
-    | """
+    |
+    | When an operand side terminates successfully the
+    | operands more to the right are deactivated.
+    """
   ) {
     script s = b c / d e
 
-    test(1) {runWithInput(s)(   ); thenActivatedOrSuccess(___)}
-    test(2) {runWithInput(s)(b,c); thenActivatedOrSuccess(___)}
-    test(3) {runWithInput(s)(d  ); thenActivatedOrSuccess(___)}
-    test(4) {runWithInput(s)(b,d); thenActivatedOrSuccess(___)}
-    test(5) {runWithInput(s)(d,e); thenActivatedOrSuccess(___)}
-    test(6) {runWithInput(s)(___); thenActivatedOrSuccess(c,d)}
+    test(1) {runWithInput(s)(   ); thenActivatedOrSuccess(___`b,d`)}
+    test(2) {runWithInput(s)(b  ); thenActivatedOrSuccess(___`c,d`)}
+    test(3) {runWithInput(s)(b,c); thenActivatedOrSuccess(___`S`)}
+    test(4) {runWithInput(s)(d  ); thenActivatedOrSuccess(___`e`)}
+    test(5) {runWithInput(s)(b,d); thenActivatedOrSuccess(___`e`)}
+    test(6) {runWithInput(s)(d,e); thenActivatedOrSuccess(___`S`)}
   }
 
 }

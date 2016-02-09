@@ -36,7 +36,7 @@ class AboutResultValues extends KoanSuite {
     script s2 = [+]
 
     test(1) {runScript(s1).$ shouldBe Failure(null)}
-    test(2) {runScript(s2).$ shouldBe Success(__)}
+    test(2) {runScript(s2).$ shouldBe Success(__`null`)}
   }
 
   koan(2)(
@@ -63,12 +63,12 @@ class AboutResultValues extends KoanSuite {
     script s5 = {!1!}  {!2!}
     script s6 = {!1!}^ {!2!}^
 
-    test(1) {runScript(s1).$ shouldBe Success(__)}
-    test(2) {runScript(s2).$ shouldBe Success(__)}
-    test(3) {runScript(s3).$ shouldBe Success(__)}
-    test(4) {runScript(s4).$ shouldBe Success(__)}
-    test(5) {runScript(s5).$ shouldBe Success(__)}
-    test(6) {runScript(s6).$ shouldBe Success(__)}
+    test(1) {runScript(s1).$ shouldBe Success(__`1`)}
+    test(2) {runScript(s2).$ shouldBe Success(__`1`)}
+    test(3) {runScript(s3).$ shouldBe Success(__`1`)}
+    test(4) {runScript(s4).$ shouldBe Success(__`2`)}
+    test(5) {runScript(s5).$ shouldBe Success(__`null`)}
+    test(6) {runScript(s6).$ shouldBe Success(__`2`)}
   }
 
   koan(3)(
@@ -77,9 +77,9 @@ class AboutResultValues extends KoanSuite {
     | literal, you can directly prefix that literal with `^`
     """
   ) {
-    script s = {!!} ^'r'
+    script s = ^'r'
 
-    test(1) {runScript(s).$ shouldBe Success(__)}
+    test(1) {runScript(s).$ shouldBe Success(__`'r'`)}
   }
 
   koan(4)(

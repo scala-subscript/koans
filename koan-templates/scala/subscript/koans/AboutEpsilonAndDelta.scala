@@ -55,7 +55,7 @@ class AboutEpsilonAndDelta extends KoanSuite with OperatorKoansHelper {
     test( 7) {runWithInput(s0)( ); thenActivatedOrSuccess(__`b`)}
     test( 8) {runWithInput(s1)( ); thenActivatedOrSuccess(__`b`)}
     test( 9) {runWithInput(sn)( ); thenActivatedOrSuccess(__`b`)}
-    test(10) {runWithInput(s0)(b); thenActivatedOrSuccess(__`` )}
+    test(10) {runWithInput(s0)(b); thenActivatedOrSuccess(__` `)}
     test(11) {runWithInput(s1)(b); thenActivatedOrSuccess(__`c`)}
     test(12) {runWithInput(sn)(b); thenActivatedOrSuccess(__`c`)}
 
@@ -76,7 +76,7 @@ class AboutEpsilonAndDelta extends KoanSuite with OperatorKoansHelper {
     test(1) {runWithInput(opt)(   ); thenActivatedOrSuccess(__`b,c`)}
     test(2) {runWithInput(opt)(b  ); thenActivatedOrSuccess(__`c`)}
     test(3) {runWithInput(opt)(c  ); thenActivatedOrSuccess(__`S`)}
-    show(4) {runWithInput(opt)(b,c); thenActivatedOrSuccess(__`S`)}
+    test(4) {runWithInput(opt)(b,c); thenActivatedOrSuccess(__`S`)}
   }
 
   koan(3)(
