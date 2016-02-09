@@ -38,10 +38,12 @@ class AboutAdvancedResultValues extends KoanSuite {
     | result value in the list is important.
     """
   ) {
-    script s = var i = 0; while(i<4)            {!i!}^^ {!i += 1!}
-               let i = 0; while(i<3) {!i += 1!} {!i!}^^
+    script s = var i = 0
+               while(i<4) {!i!}^^ {!i += 1!}
+               let i = 0
+               while(i<3) {!i += 1!} {!i!}^^
 
-    test(1) {runScript(s).$ shouldBe Success(__`List(1,2,2,3)`)}
+    test(1) {runScript(s).$ shouldBe Success(__`List(1,2,3,3)`)}
   }
 
   koan(3)(
@@ -68,7 +70,7 @@ class AboutAdvancedResultValues extends KoanSuite {
     script..
       s = var i= 0
           var j=10
-          while(i<3) [^i^^1 ^j^^2]^^2  {! i+=1; j-=1 !}
+          while(i<3) [^i^^1 ^j^^2]^^  {! i+=1; j-=1 !}
 
     test(1) {runScript(s).$ shouldBe Success(List(__`(0,10),(1,9),(2,8)`))}
   }

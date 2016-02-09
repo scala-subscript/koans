@@ -35,8 +35,8 @@ class AboutResultValues extends KoanSuite {
     script s1 = [-]
     script s2 = [+]
 
-    test(1) {runScript(s1).$ shouldBe Failure(null)}
-    test(2) {runScript(s2).$ shouldBe Success(__`null`)}
+    test(1) {runScript(s1).$ shouldBe __`null`}
+    test(2) {runScript(s2).$ shouldBe __`null`}
   }
 
   koan(2)(
@@ -67,7 +67,7 @@ class AboutResultValues extends KoanSuite {
     test(2) {runScript(s2).$ shouldBe Success(__`1`)}
     test(3) {runScript(s3).$ shouldBe Success(__`1`)}
     test(4) {runScript(s4).$ shouldBe Success(__`2`)}
-    test(5) {runScript(s5).$ shouldBe Success(__`null`)}
+    test(5) {runScript(s5).$ shouldBe __`null`}
     test(6) {runScript(s6).$ shouldBe Success(__`2`)}
   }
 
