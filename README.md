@@ -31,8 +31,6 @@ To get started contributing to the project, first clone the repository (fork&clo
 
 The koans are located at `/koan-templates` directory, at the root of the project. The sources in that directory are templates that contain solutions next to the placeholders. The format is as follows: ``__`solution```.
 
-In order to test your project with solutions in place, first run `./solutions on` from the root of the project. This will copy the koans with solutions to the test directory - you can enter the sbt console and work with them as described above.
-
-In order to test the project without solutions, run `./solutions off`.
+You need to test all the koans in a solved state to reveal all the possible runtime errors. When you run `test-only PathToEnlightenment`, the solutions are automatically substituted in place of the placeholders.
 
 In order to release a new version of the koans, execute `./release version`, where `version` is your version. A zip will be generated under `distribution` folder ready to be published.
