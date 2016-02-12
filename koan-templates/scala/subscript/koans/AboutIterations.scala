@@ -194,7 +194,7 @@ class AboutIterations extends KoanSuite with OperatorKoansHelper {
 
     test(1) {runWithInput(s)(           ); thenActivatedOrSuccess(__`b`)}
     test(2) {runWithInput(s)(b          ); thenActivatedOrSuccess(__`b,c`)}
-//  show(3) {runWithInput(s)(b,b        ); thenActivatedOrSuccess(__`b,c`)}
+    test(3) {runWithInput(s)(b,b        ); thenActivatedOrSuccess(__`b,c`)}
     test(4) {runWithInput(s)(b,b,c      ); thenActivatedOrSuccess(__`b,d`)}
     test(5) {runWithInput(s)(b,c,b      ); thenActivatedOrSuccess(__`b,c`)}
     test(6) {runWithInput(s)(b,c,b,b,c  ); thenActivatedOrSuccess(__`b,d`)}

@@ -6,6 +6,8 @@ import subscript.objectalgebra._
 
 import subscript.vm._
 
+import scala.collection.mutable.ListBuffer
+
 import org.scalatest._
 
 trait OperatorKoansHelper {this: Matchers =>
@@ -14,26 +16,28 @@ trait OperatorKoansHelper {this: Matchers =>
     var activatedFlag = false
 
     override script lifecycle = @{
+      // def dbg(x: Any) = if (!runIsOver) println(x)
+
       there.onActivate {
-        // println("Activated " + this)
+        // dbg("Activated " + this)
         activatedFlag = true
-        activated += this
+        _activated += this
       }
 
       there.onSuccess  {
-        // println("Succeeded " + this)
-        activated  -= this
+        // dbg("Succeeded " + this)
+        _activated  -= this
         succeeded :+= this
       }
 
       there.onExclude {
-        // println("Excluded " + this)
-        if (!runIsOver) activated -= this
+        // dbg("Excluded " + this)
+        if (!runIsOver) _activated -= this
         activatedFlag = false
       }
 
       there.onDeactivate {
-        // println("Deactivated " + this + "\n")
+        // dbg("Deactivated " + this + "\n")
         activatedFlag = false
       }
     }: super.lifecycle
@@ -41,13 +45,15 @@ trait OperatorKoansHelper {this: Matchers =>
     override def toString = name
   }
 
-  var succeeded: List[RecordingTrigger] = Nil
-  var activated: Set [RecordingTrigger] = Set()
+  var succeeded : List      [RecordingTrigger] = Nil
+  var _activated: ListBuffer[RecordingTrigger] = new ListBuffer
+  def activated : Set       [RecordingTrigger] = _activated.toSet
+
   var runIsOver = true
   def reset() {
-    succeeded = Nil
-    activated = Set()
-    runIsOver = true
+    succeeded  = Nil
+    _activated = new ListBuffer
+    runIsOver  = true
   }
 
 
