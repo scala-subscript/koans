@@ -16,15 +16,15 @@ class PathToEnlightenment extends Sequential(
 , new AboutOrParallelism
 , new AboutDisruption
 
-, new AboutIterations // incl break, break?, ..., ..?
+, new AboutIterations
+//, new AboutCodeFragments // tiny, threaded, unsure, event handling
 //, new AboutParentheses // how to get rid of those: plus(a,b), call:syntax, semicolon, method calls, let.
-, new AboutAdvancedSyntax // ? still needed
+, new AboutAdvancedSyntax // <= AboutVarValLet?
 
 //, new AboutHereAndThere
 //, new AboutAnnotations
 
-//, new AboutCodeFragments // tiny, threaded, unsure, event handling
-//, new AboutScriptParameters
+//, new AboutScriptParameters // output, colon notation
 //, new AboutTerms // wrap up
 
 , new AboutConditionalOperators
