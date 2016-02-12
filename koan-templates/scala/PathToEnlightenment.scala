@@ -16,7 +16,7 @@ class PathToEnlightenment extends Sequential(
 , new AboutOrParallelism
 , new AboutDisruption
 
-//, new AboutIterations // incl break, break?, ..., ..?
+, new AboutIterations // incl break, break?, ..., ..?
 //, new AboutParentheses // how to get rid of those: plus(a,b), call:syntax, semicolon, method calls, let.
 , new AboutAdvancedSyntax // ? still needed
 
