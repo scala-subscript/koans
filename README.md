@@ -26,6 +26,20 @@ If you want to skip some koans, you can comment them out in `src/test/PathToEnli
 
 **IMPORTANT:** Currently SubScript files are translated by a combination of a preprocessor and the normal Scala compiler. This implies that error messages that the Scala compiler generatess may point to wrong lines. Please be guided by koan and test ids (Koan 1, Test 1) to identify failing tests, not by the line number indicated in the error!
 
+## Controling test workflow
+
+You can specify how much tests should be executed before the test suite returns. For example, in order to set this number to 10, invoking the following command from SBT console:
+```
+set javaOptions in Test += "-Dmax=10"
+```
+
+You can also make all the wrong tests output a solution:
+```
+set javaOptions in Test += "-Dshow=1"
+```
+
+You can cancel this behaviour by writing `0` instead of `1`.
+
 ## For developer
 
 To get started contributing to the project, first clone the repository (fork&clone if you plan to do pull requests): `git clone https://github.com/scala-subscript/koans.git`.
