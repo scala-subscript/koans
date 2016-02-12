@@ -10,7 +10,7 @@ testOptions in Test += Tests.Argument("-oC")
 
 lazy val solutionsOn = taskKey[Unit]("Turn the solutions on")
 
-solutionsOn := {"./solutions off"!}
+solutionsOn := {"./solutions on"!}
 
 testOnly <<= (testOnly in Test) dependsOn solutionsOn
 
