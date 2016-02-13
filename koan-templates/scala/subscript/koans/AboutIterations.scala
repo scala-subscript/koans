@@ -200,8 +200,27 @@ class AboutIterations extends KoanSuite with OperatorKoansHelper {
     test(6) {runWithInput(s)(b,c,b,b,c  ); thenActivatedOrSuccess(__`b,d`)}
     test(7) {runWithInput(s)(b,c,b,b,c,d); thenActivatedOrSuccess(__`S`)}
   }
-/*
+
   koan(6)(
+    """
+    | `..?` in combination with a parallel operator may
+    | model an unlimited group of processes each of which start
+    | with an externally triggered action.
+    """
+  ) {
+    script..
+      s = ..? & b c d
+
+    test(1) {runWithInput(s)(           ); thenActivatedOrSuccess(__`b,S`)}
+    test(2) {runWithInput(s)(b          ); thenActivatedOrSuccess(__`b,c`)}
+    test(3) {runWithInput(s)(b,b        ); thenActivatedOrSuccess(__`b,c`)}
+    test(4) {runWithInput(s)(b,b,c      ); thenActivatedOrSuccess(__`b,c,d`)}
+  //test(5) {runWithInput(s)(b,b,c,d    ); thenActivatedOrSuccess(__`b,c`)}    // failing, TBD: fix bug in VM?
+  //test(6) {runWithInput(s)(b,c,b,d,c,d); thenActivatedOrSuccess(__`b,S`)}
+  }
+
+/*
+  koan(7)( // Deactivated because of probable bug
     """
     | `break?` makes probably no sense in context of `+`. It will
     | break the activation in case no code fragments with atomic actions had been activated since
