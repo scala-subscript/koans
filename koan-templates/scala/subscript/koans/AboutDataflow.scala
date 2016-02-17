@@ -3,7 +3,7 @@ package subscript.koans
 import subscript.language
 import subscript.Predef._
 
-import subscript.vm.ScriptNode
+import subscript.vm.Script
 
 import subscript.koans.util._
 
@@ -34,7 +34,7 @@ class AboutDataflow extends KoanSuite {
     """
   ) {
     script..
-      s(lhs: ScriptNode[Any]) = lhs ~~(x: Int)~~> ^(x + 2)
+      s(lhs: Script[Any]) = lhs ~~(x: Int)~~> ^(x + 2)
                                   +~/~(e: RuntimeException)~~> ^"Exception happened!"
 
       s1 = ^3
@@ -51,7 +51,7 @@ class AboutDataflow extends KoanSuite {
     """
   ) {
     script..
-      s(lhs: ScriptNode[Any]) =
+      s(lhs: Script[Any]) =
         lhs ~~(x: Int   )~~> ^(x + 2)
            +~~(x: String)~~> ^("Result: " + x)
            +~~(x: Double)~~> ^(x * 2)
@@ -82,7 +82,7 @@ class AboutDataflow extends KoanSuite {
     | Dataflow map may also have multiple matching clauses
     """
   ) {
-    script s(lhs: ScriptNode[Any]) = lhs ~~(x: Int   )~~^(x*2)
+    script s(lhs: Script[Any]) = lhs ~~(x: Int   )~~^(x*2)
                                         +~~(x: Double)~~^(x*3)
 
     test(1) {runScript(s([^2  ])).$ shouldBe Success(__`4`)}

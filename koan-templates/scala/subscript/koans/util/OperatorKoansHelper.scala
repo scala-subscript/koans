@@ -76,7 +76,7 @@ trait OperatorKoansHelper {this: Matchers =>
 
   val `___` = new RecordingTrigger("___")
 
-  def runWithInput(s: ScriptNode[Any])(input: RecordingTrigger*) {
+  def runWithInput(s: Script[Any])(input: RecordingTrigger*) {
     reset()
     runScript(runWithInputScript(s, input))
   }
@@ -85,7 +85,7 @@ trait OperatorKoansHelper {this: Matchers =>
 
 
   script..
-    runWithInputScript(s: ScriptNode[Any], input: Seq[RecordingTrigger]) =
+    runWithInputScript(s: Script[Any], input: Seq[RecordingTrigger]) =
       input.foreach(t => t.activatedFlag = false)
       let S.activatedFlag = false
       let runIsOver = false
