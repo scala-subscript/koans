@@ -18,7 +18,7 @@ lazy val koans              = inputKey[Unit]("Runs koans")
 lazy val show               = inputKey[Unit]("Runs koans with hints")
 lazy val debugKoans         = inputKey[Unit]("Runs koans with debugger")
 
-solutionsOn := {"./solutions off"!}
+solutionsOn := {"./solutions on"!}
 
 setEnvironmentTask <<= Def.inputTask {
   val args = spaceDelimited("<arg>").parsed
