@@ -13,7 +13,7 @@ object KoanSuiteGlobal {
   val wrongTestsMax = env("max").map(_.toInt).getOrElse(1)
   var wrongTests = 0
 
-  val showAll = env("show").map(_ != 0).getOrElse(false)
+  val showAll = env("show").map(_.toInt != 0).getOrElse(false)
 
   def doStop = wrongTests >= wrongTestsMax
 
