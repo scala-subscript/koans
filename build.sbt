@@ -16,6 +16,7 @@ lazy val setEnvironmentTask = inputKey[Unit]("Sets environment variable")
 
 lazy val koans              = inputKey[Unit]("Runs koans")
 lazy val show               = inputKey[Unit]("Runs koans with hints")
+lazy val debugKoans         = inputKey[Unit]("Runs koans with debugger")
 
 solutionsOn := {"./solutions off"!}
 
@@ -23,6 +24,7 @@ setEnvironmentTask <<= Def.inputTask {
   val args = spaceDelimited("<arg>").parsed
   for {
     arg   <- args
+    if arg.contains(':')
     key   = arg.takeWhile(_ != ':')
     value = arg.reverse.takeWhile(_ != ':').reverse
   } System.setProperty(key, value)
@@ -34,5 +36,10 @@ koans := setEnvironmentTask.parsed.flatMap {_ =>
 
 show := setEnvironmentTask.parsed.flatMap {_ =>
   System.setProperty("show", "1")
+  (testOnly in Test).fullInput(" PathToEnlightenment").parsed
+}.value
+
+debugKoans := setEnvironmentTask.parsed.flatMap {_ =>
+  System.setProperty("debug", "1")
   (testOnly in Test).fullInput(" PathToEnlightenment").parsed
 }.value
