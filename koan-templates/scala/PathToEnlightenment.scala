@@ -2,8 +2,9 @@ import org.scalatest._
 
 import subscript.koans._
 
-class PathToEnlightenment extends Sequential(
+import subscript.koans.util.KoanSuiteGlobal._
 
+class PathToEnlightenment extends Suite with SequentialNestedSuiteExecution {override def nestedSuites = scala.collection.immutable.IndexedSeq (
   new AboutSubScript
 , new AboutScriptDefinitions
 
@@ -33,4 +34,6 @@ class PathToEnlightenment extends Sequential(
 , new AboutDataflow
 
 //, new AboutACPAxioms // their relation with SubScript
-)
+).filter {s =>
+  envSeq("about").isEmpty || envSeq("about").exists(s.getClass.getCanonicalName.endsWith)
+}}

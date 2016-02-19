@@ -18,10 +18,15 @@ lazy val koans              = inputKey[Unit]("Runs koans")
 lazy val show               = inputKey[Unit]("Runs koans with hints")
 lazy val debugKoans         = inputKey[Unit]("Runs koans with debugger")
 
-solutionsOn := {"./solutions on"!}
+solutionsOn := {"./solutions off"!}
 
 setEnvironmentTask <<= Def.inputTask {
   val args = spaceDelimited("<arg>").parsed
+
+  System.setProperty("about", "")
+  System.setProperty("koan" , "")
+  System.setProperty("test" , "")
+
   for {
     arg   <- args
     if arg.contains(':')

@@ -13,6 +13,9 @@ object KoanSuiteGlobal {
     if (res ne null) Some(res) else None
   }
 
+  def envSeq(name: String): Seq[String] =
+    env(name).map(_.split(',').toList).getOrElse(Nil)
+
   val wrongTestsMax = env("max").map(_.toInt).getOrElse(1)
   var wrongTests = 0
 
@@ -27,20 +30,20 @@ trait KoanSuite extends FunSuite with KoanPredef
                                  with Matchers
                                  with KoanSuiteEngine {
   import KoanSuiteGlobal._                                   
-  
+  val className = getClass.getCanonicalName
+
   override def runTests(name: Option[String], args: Args) = name match {
     case Some(_) => super.runTests(name, args)
     case None    => testNames.foldLeft(SucceededStatus: Status) {(status, test) =>
       if (!doStop) {
         val result = runTest(test, args)
-        // if (result == FailedStatus) wrongTests += 1
         if (doStop) args.stopper.requestStop()
         result
       }
       else status
     }
   }
-
+  
   def koan(id: Int)(name: String)(fun: => Unit) = test(s"Koan $id"     ) {
     resetEngine()
     fun
@@ -68,7 +71,6 @@ trait KoanSuiteEngine {
   }
 
   def processTests(koanId: Int) {
-    val className = getClass.getCanonicalName
     // println(s"KoanId: $koanId; class: $className")
 
     @annotation.tailrec
@@ -76,7 +78,6 @@ trait KoanSuiteEngine {
       case t :: x if !doStop =>
         // Debug or not debug?
         if ( env("debug").map(_.toInt != 0      ).getOrElse(false)  // Debug allowed
-          && env("about").map(className.endsWith).getOrElse(false)  // This is the About to debug
           && env("koan" ).map(_.toInt == koanId ).getOrElse(false)  // This is the koan to debug
           && env("test" ).map(_.toInt == t.id   ).getOrElse(false)  // THis is the test to debug
         ) {
