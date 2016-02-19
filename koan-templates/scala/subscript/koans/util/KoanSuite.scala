@@ -4,6 +4,9 @@ import org.scalatest._
 import org.scalatest.events._
 import org.scalatest.exceptions.TestFailedException
 
+import subscript.swing.SubScriptDebuggerApp
+import subscript.vm.executor.ScriptExecutorFactory
+
 object KoanSuiteGlobal {
   def env(name: String): Option[String] = {
     val res = System.getProperty(name)
@@ -41,7 +44,7 @@ trait KoanSuite extends FunSuite with KoanPredef
   def koan(id: Int)(name: String)(fun: => Unit) = test(s"Koan $id"     ) {
     resetEngine()
     fun
-    processTests()
+    processTests(id)
   }
 
   def test(id: Int)(fun: => Unit): Unit = tests :+=
@@ -64,10 +67,31 @@ trait KoanSuiteEngine {
     msgs  = Nil
   }
 
-  def processTests() {
+  def processTests(koanId: Int) {
+    val className = getClass.getCanonicalName
+    // println(s"KoanId: $koanId; class: $className")
+
     @annotation.tailrec
     def loop(tx: List[KoanTest]): Unit = tx match {
       case t :: x if !doStop =>
+        // Debug or not debug?
+        if ( env("debug").map(_.toInt != 0      ).getOrElse(false)  // Debug allowed
+          && env("about").map(className.endsWith).getOrElse(false)  // This is the About to debug
+          && env("koan" ).map(_.toInt == koanId ).getOrElse(false)  // This is the koan to debug
+          && env("test" ).map(_.toInt == t.id   ).getOrElse(false)  // THis is the test to debug
+        ) {
+          val debugger = new SubScriptDebuggerApp {
+            vmThread = new Thread{override def run={
+              live
+              top.visible = false
+            }}
+          }
+          ScriptExecutorFactory.addScriptDebugger(debugger)
+          debugger.top.visible = true
+          debugger.vmThread.start()
+        }
+
+        // Execute the test
         try t.payload()
         catch {case e: TestFailedException =>
           wrongTests += 1
