@@ -13,6 +13,9 @@ object KoanSuiteGlobal {
     if (res ne null) Some(res) else None
   }
 
+  def envFlag(name: String): Boolean =
+    env(name).map(_.toInt != 0).getOrElse(false)
+
   def envSeq(name: String): Seq[String] =
     env(name).map(_.split(',').toList).getOrElse(Nil)
 
@@ -83,7 +86,7 @@ trait KoanSuiteEngine {
         // Run or not?
         if (envSeqPredicate("test")(_.toInt == t.id)) {
           // Debug or not debug?
-          if (env("debug").map(_.toInt != 0).getOrElse(false)) {
+          if (envFlag("debug")) {
             val debugger = new SubScriptDebuggerApp {
               vmThread = new Thread{override def run={
                 live
@@ -93,6 +96,10 @@ trait KoanSuiteEngine {
             ScriptExecutorFactory.addScriptDebugger(debugger)
             debugger.top.visible = true
             debugger.vmThread.start()
+          }
+          else if (envFlag("trace")) {
+            val debugger = new subscript.vm.SimpleScriptDebuggerClass
+            ScriptExecutorFactory.addScriptDebugger(debugger)
           }
 
           // Execute the test
