@@ -17,7 +17,7 @@ object KoanSuiteGlobal {
     env(name).map(_.split(',').toList).getOrElse(Nil)
 
   def envSeqPredicate(name: String)(predicate: String => Boolean): Boolean = {
-    val seq = envSeq(name)
+    val seq = envSeq(name).filter(!_.isEmpty)
     seq.isEmpty || seq.exists(predicate)
   }
 
@@ -77,34 +77,33 @@ trait KoanSuiteEngine {
   }
 
   def processTests() {
-    // println(s"KoanId: $koanId; class: $className")
-
     @annotation.tailrec
     def loop(tx: List[KoanTest]): Unit = tx match {
       case t :: x if !doStop =>
-        // Debug or not debug?
-        if ( env("debug").map(_.toInt != 0      ).getOrElse(false)  // Debug allowed
-          && env("test" ).map(_.toInt == t.id   ).getOrElse(false)  // THis is the test to debug
-        ) {
-          val debugger = new SubScriptDebuggerApp {
-            vmThread = new Thread{override def run={
-              live
-              top.visible = false
-            }}
+        // Run or not?
+        if (envSeqPredicate("test")(_.toInt == t.id)) {
+          // Debug or not debug?
+          if (env("debug").map(_.toInt != 0).getOrElse(false)) {
+            val debugger = new SubScriptDebuggerApp {
+              vmThread = new Thread{override def run={
+                live
+                top.visible = false
+              }}
+            }
+            ScriptExecutorFactory.addScriptDebugger(debugger)
+            debugger.top.visible = true
+            debugger.vmThread.start()
           }
-          ScriptExecutorFactory.addScriptDebugger(debugger)
-          debugger.top.visible = true
-          debugger.vmThread.start()
-        }
 
-        // Execute the test
-        try t.payload()
-        catch {case e: TestFailedException =>
-          wrongTests += 1
-          msgs :+= {
-            if (t.show || showAll) s"Test ${t.id}: ${e.getMessage}"
-            else s"Test ${t.id} goes wrong: try again please."
-          }  
+          // Execute the test
+          try t.payload()
+          catch {case e: TestFailedException =>
+            wrongTests += 1
+            msgs :+= {
+              if (t.show || showAll) s"Test ${t.id}: ${e.getMessage}"
+              else s"Test ${t.id} goes wrong: try again please."
+            }  
+          }
         }
 
         loop(x)
