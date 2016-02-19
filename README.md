@@ -8,7 +8,7 @@ To get started with the project:
 1. Clone the repository: `git clone https://github.com/scala-subscript/koans.git`, go to its root and run `./release 1.0.0`. You'll get a release zip file under your `distribution` directory. Unzip it somewhere and `cd` to that folder.
 2. Go to the root directory: `cd koans`
 3. Open the SBT console: `sbt`
-4. Run the koans from SBT console: `test-only PathToEnlightenment`
+4. Run the koans from SBT console: `koans`
 
 You'll see all your completed koans colored in green and the koan suite to be worked on colored in red:
 ```
@@ -22,23 +22,33 @@ The instructions in the koans will be helpful for you.
 
 In case you can't solve a particular test, rename `test` to `show` and the program will give you a clue on the next run.
 
-If you want to skip some koans, you can comment them out in `src/test/PathToEnlightenment.scala`.
-
 **IMPORTANT:** Currently SubScript files are translated by a combination of a preprocessor and the normal Scala compiler. This implies that error messages that the Scala compiler generatess may point to wrong lines. Please be guided by koan and test ids (Koan 1, Test 1) to identify failing tests, not by the line number indicated in the error!
 
-## Controling test workflow
+## Controlling test workflow
 
-You can specify how much tests should be executed before the test suite returns. For example, in order to set this number to 10, invoking the following command from SBT console:
-```
-set javaOptions in Test += "-Dmax=10"
-```
+You can specify certain options after `koans` to control the test flow.
 
-You can also make all the wrong tests output a solution:
+You can specify which precisely a koan suite, koan and test to run as follows (all the parameters are optional):
 ```
-set javaOptions in Test += "-Dshow=1"
+koans about:Dataflow,EpsilonAndDelta koan:1,2 test:2,3
 ```
 
-You can cancel this behaviour by writing `0` instead of `1`.
+You can skip the koan suites as follows:
+```
+koans skip:Dataflow,EpsilonAndDelta
+```
+
+You can run all the koans with clues using `show` instead of `koans`.
+
+You can debug the koans in a graphical debugger as follows:
+```
+debugKoans about:Dataflow koan:1 test:1
+```
+
+You can debug the koans in a textual debugger as follows:
+```
+trace about:Dataflow koan:1 test:1
+```
 
 ## For developer
 

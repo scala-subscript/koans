@@ -25,12 +25,13 @@ solutionsOn := {"./solutions on"!}
 setEnvironmentTask <<= Def.inputTask {
   val args = spaceDelimited("<arg>").parsed
 
-  System.setProperty("about", "")
-  System.setProperty("koan" , "")
-  System.setProperty("test" , "")
+  System.clearProperty("about")
+  System.clearProperty("koan" )
+  System.clearProperty("test" )
+  System.clearProperty("skip" )
 
-  System.setProperty("debug", "0")
-  System.setProperty("trace", "0")
+  System.clearProperty("debug")
+  System.clearProperty("trace")
 
   for {
     arg   <- args
