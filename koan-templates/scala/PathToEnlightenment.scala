@@ -34,6 +34,4 @@ class PathToEnlightenment extends Suite with SequentialNestedSuiteExecution {ove
 , new AboutDataflow
 
 //, new AboutACPAxioms // their relation with SubScript
-).filter {s =>
-  envSeq("about").isEmpty || envSeq("about").exists(s.getClass.getCanonicalName.endsWith)
-}}
+).filter {s => envSeqPredicate("about")(s.getClass.getCanonicalName.endsWith)}}

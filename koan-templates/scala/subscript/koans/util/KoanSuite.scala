@@ -16,6 +16,11 @@ object KoanSuiteGlobal {
   def envSeq(name: String): Seq[String] =
     env(name).map(_.split(',').toList).getOrElse(Nil)
 
+  def envSeqPredicate(name: String)(predicate: String => Boolean): Boolean = {
+    val seq = envSeq(name)
+    seq.isEmpty || seq.exists(predicate)
+  }
+
   val wrongTestsMax = env("max").map(_.toInt).getOrElse(1)
   var wrongTests = 0
 
@@ -29,8 +34,7 @@ object KoanSuiteGlobal {
 trait KoanSuite extends FunSuite with KoanPredef
                                  with Matchers
                                  with KoanSuiteEngine {
-  import KoanSuiteGlobal._                                   
-  val className = getClass.getCanonicalName
+  import KoanSuiteGlobal._
 
   override def runTests(name: Option[String], args: Args) = name match {
     case Some(_) => super.runTests(name, args)
@@ -43,11 +47,13 @@ trait KoanSuite extends FunSuite with KoanPredef
       else status
     }
   }
-  
-  def koan(id: Int)(name: String)(fun: => Unit) = test(s"Koan $id"     ) {
-    resetEngine()
-    fun
-    processTests(id)
+
+  def koan(id: Int)(name: String)(fun: => Unit) = test(s"Koan $id") {
+    if (envSeqPredicate("koan")(_.toInt == id)) {
+      resetEngine()
+      fun
+      processTests()
+    }
   }
 
   def test(id: Int)(fun: => Unit): Unit = tests :+=
@@ -70,7 +76,7 @@ trait KoanSuiteEngine {
     msgs  = Nil
   }
 
-  def processTests(koanId: Int) {
+  def processTests() {
     // println(s"KoanId: $koanId; class: $className")
 
     @annotation.tailrec
@@ -78,7 +84,6 @@ trait KoanSuiteEngine {
       case t :: x if !doStop =>
         // Debug or not debug?
         if ( env("debug").map(_.toInt != 0      ).getOrElse(false)  // Debug allowed
-          && env("koan" ).map(_.toInt == koanId ).getOrElse(false)  // This is the koan to debug
           && env("test" ).map(_.toInt == t.id   ).getOrElse(false)  // THis is the test to debug
         ) {
           val debugger = new SubScriptDebuggerApp {
