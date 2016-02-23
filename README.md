@@ -4,11 +4,10 @@ They are a compilation of small exercises designed to teach you SubScript.
 
 To get started with the project:
 
-1. ~~[Download](#) and unzip the latest release~~ **NO RELEASES SO FAR! Follow next step (1) to generate a release manually. STAY TUNED: We'll release soon!**
-1. Clone the repository: `git clone https://github.com/scala-subscript/koans.git`, go to its root and run `./release 1.0.0`. You'll get a release zip file under your `distribution` directory. Unzip it somewhere and `cd` to that folder.
-2. Go to the root directory: `cd koans`
-3. Open the SBT console: `sbt`
-4. Run the koans from SBT console: `koans`
+1. [Download](https://github.com/scala-subscript/koans/releases/download/v1.0.0/subscript-koans-1.0.0.zip) and unzip the latest release to a directory of your choice.
+2. Navigate to that directory from your command line.
+3. Open the SBT console: `sbt`.
+4. Run the koans from SBT console: `koans`.
 
 You'll see all your completed koans colored in green and the koan suite to be worked on colored in red:
 ```
