@@ -1,25 +1,28 @@
 # SubScript Koans
-SubScript Koans are inspired by Scala Koans, Ruby Koans and similar projects.
-They are a compilation of small exercises designed to teach you SubScript.
+SubScript Koans are small exercises that teach you SubScript. They have been inspired by Scala Koans and Ruby Koans.
 
-To get started with the project:
+## Getting Started
 
 1. [Download](https://github.com/scala-subscript/koans/releases/download/v1.0.0/subscript-koans-1.0.0.zip) and unzip the latest release to a directory of your choice.
 2. Navigate to that directory from your command line.
 3. Open the SBT console: `sbt`.
-4. Run the koans from SBT console: `koans`.
+4. Run the koans from the SBT console: `koans`.
 
-You'll see all your completed koans colored in green and the koan suite to be worked on colored in red:
+You will see all your completed koans colored in green, and the koan suite to be worked on colored in red:
 ```
 [info] AboutSubScript:
 [info] - Koan 1 *** FAILED ***
 [info]   Test 1 is wrong: think more about it! (KoanSuite.scala:28)
 ```
 
-This means you need to work on AboutSubScript koan suite, Koan 1, Test 1. Find it at `src/test/scala/subscript/koans/` folder, open it and make the tests pass.
+This means you need to work on AboutSubScript koan suite, Koan 1, Test 1. 
+The source is at `src/test/scala/subscript/koans/` folder.
+Your task is to edit the file so that the tests passes.
 The instructions in the koans will be helpful for you.
 
-In case you can't solve a particular test, rename `test` to `show` and the program will give you a clue on the next run.
+In case you can't solve a particular test, you may change a call to the `test` method into a call to `show`;
+then the program will give you a clue on the next run. 
+Alternatively you may run the koans from the SBT console using the command `show` instead of `koans`.
 
 **IMPORTANT:** Currently SubScript files are translated by a combination of a preprocessor and the normal Scala compiler. This implies that error messages that the Scala compiler generatess may point to wrong lines. Please be guided by koan and test ids (Koan 1, Test 1) to identify failing tests, not by the line number indicated in the error!
 
@@ -27,34 +30,42 @@ In case you can't solve a particular test, rename `test` to `show` and the progr
 
 You can specify certain options after `koans` to control the test flow.
 
-You can specify which precisely a koan suite, koan and test to run as follows (all the parameters are optional):
+E.g.,
 ```
-koans about:Dataflow,EpsilonAndDelta koan:1,2 test:2,3
+koans about:EpsilonAndDelta koan:1,2 test:2,3
 ```
-
-You can skip the koan suites as follows:
+Alternatively you can specify which koans to skip:
 ```
 koans skip:Dataflow,EpsilonAndDelta
 ```
 
-You can run all the koans with clues using `show` instead of `koans`.
-
-You can debug the koans in a graphical debugger as follows:
+Use `show` instead of `koans` to receive clues about errors:
+```
+show about:Dataflow, AdvancedSyntax
+```
+You can debug a koan test in a graphical debugger as follows:
 ```
 debugKoans about:Dataflow koan:1 test:1
 ```
 
-You can debug the koans in a textual debugger as follows:
+You can debug a koan test in a textual debugger as follows:
 ```
 trace about:Dataflow koan:1 test:1
 ```
 
-## For developer
+## For developers
 
-To get started contributing to the project, first clone the repository (fork&clone if you plan to do pull requests): `git clone https://github.com/scala-subscript/koans.git`.
+To get started contributing to the project, first clone the repository (fork&clone if you plan to do pull requests):
+```
+git clone https://github.com/scala-subscript/koans.git
+```
 
-The koans are located at `/koan-templates` directory, at the root of the project. The sources in that directory are templates that contain solutions next to the placeholders. The format is as follows: ``__`solution```.
+The koans are located at directory `/koan-templates`, at the root of the project.
+The sources in that directory are templates that contain solutions next to the placeholders.
+The format is as follows: ``__`solution```, e.g., ``__`1```.
 
-You need to test all the koans in a solved state to reveal all the possible runtime errors. When you run `test-only PathToEnlightenment`, the solutions are automatically substituted in place of the placeholders.
+You would need to test all the koans in a solved state to reveal all the possible runtime errors. 
+When you run `test-only PathToEnlightenment`, the placeholders are are automatically substituted by the solutions.
 
-In order to release a new version of the koans, execute `./release version`, where `version` is your version. A zip will be generated under `distribution` folder ready to be published.
+In order to release a new version of the koans, execute `./release version`, where `version` is your version.
+A zip file will be generated under `distribution` folder ready to be published.
