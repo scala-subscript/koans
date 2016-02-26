@@ -18,12 +18,11 @@ class PathToEnlightenment extends Suite with SequentialNestedSuiteExecution {ove
 , new AboutDisruption
 
 , new AboutIterations
-//, new AboutCodeFragments // tiny, threaded, unsure, event handling
-//, new AboutParentheses // how to get rid of those: plus(a,b), call:syntax, semicolon, method calls, let.
+, new AboutCodeFragments
+//, new AboutParentheses // how to get rid of those: if then, plus(a,b), call:syntax, semicolon, method calls, let.
 , new AboutAdvancedSyntax // <= AboutVarValLet?
 
-//, new AboutHereAndThere
-//, new AboutAnnotations
+//, new AboutHereAndThereAnnotations
 
 //, new AboutScriptParameters // output, colon notation
 //, new AboutTerms // wrap up
