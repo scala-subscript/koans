@@ -62,8 +62,14 @@ git clone https://github.com/scala-subscript/koans.git
 
 The koans are located at directory `/koan-templates`, at the root of the project.
 The sources in that directory are templates that contain solutions next to the placeholders.
-The format is as follows: ``__`solution```, e.g., ``__`1```.
+The format is as follows: 
 
+    __`solution`
+    
+E.g.,
+
+    __`1`
+    
 You would need to test all the koans in a solved state to reveal all the possible runtime errors. 
 When you run `test-only PathToEnlightenment`, the placeholders are are automatically substituted by the solutions.
 
