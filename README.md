@@ -32,7 +32,7 @@ You can specify certain options after `koans` to control the test flow.
 
 E.g.,
 ```
-koans about:EpsilonAndDelta koan:1,2 test:2,3
+koans about:EpsilonAndDelta koan:1 test:2,3
 ```
 Alternatively you can specify which koans to skip:
 ```
@@ -45,7 +45,7 @@ show about:Dataflow, AdvancedSyntax
 ```
 You can debug a koan test in a graphical debugger as follows:
 ```
-debugKoans about:Dataflow koan:1 test:1
+debugKoans about:Dataflow koan:1,2
 ```
 
 You can debug a koan test in a textual debugger as follows:
