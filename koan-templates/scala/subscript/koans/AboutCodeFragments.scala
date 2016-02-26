@@ -32,7 +32,7 @@ class AboutCodeFragments extends KoanSuite with OperatorKoansHelper {
         reset = {! i=0 !}
 
         p  = {* i+=1 *}
-        q  = {* i=1; Thread.sleep(100); i+=100 *}
+        q  = {* i=1; Thread.sleep(200); i+=100 *} // 200 ms is enough to "trust" in interleaving
         r  = {* i=1; Thread.sleep(300); i+=300 *}
 
         s1 = reset;  p ; p
