@@ -7,5 +7,12 @@ CONTENTS="README.md build.sbt project src"
 rm -r project/project project/target
 mkdir distribution
 
+# Modify SBT to release version: comment solutionsOn dependency
+export LC_ALL=C
+sed -E -i '' -e "s/(dependsOn solutionsOn)/\/\/\1/g" build.sbt
+
 # Do the work
 zip -r "distribution/subscript-koans-$VERSION.zip" $CONTENTS
+
+# Reverse the changes to SBT file
+sed -E -i '' -e "s/\/\/(dependsOn solutionsOn)/\1/g" build.sbt
