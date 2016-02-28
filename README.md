@@ -3,7 +3,7 @@ SubScript Koans are small exercises that teach you SubScript. They have been ins
 
 ## Getting Started
 
-1. [Download](https://github.com/scala-subscript/koans/releases/download/v1.0.0/subscript-koans-1.0.0.zip) and unzip the latest release to a directory of your choice.
+1. [Download](https://github.com/scala-subscript/koans/releases/download/v1.0.1/subscript-koans-1.0.1.zip) and unzip the latest release to a directory of your choice.
 2. Navigate to that directory from your command line.
 3. Open the SBT console: `sbt`.
 4. Run the koans from the SBT console: `koans`.
