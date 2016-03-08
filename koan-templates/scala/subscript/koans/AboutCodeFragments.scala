@@ -40,10 +40,10 @@ class AboutCodeFragments extends KoanSuite with OperatorKoansHelper {
         s3 = reset;  q & q
         s4 = reset;  q || r
 
-      test(1) {runScript(s1); i shouldBe __`2`}
-      test(2) {runScript(s2); i shouldBe __`2`}
-      test(3) {runScript(s3); i shouldBe __`201`}
-      test(4) {runScript(s4); i shouldBe __`101`}
+      // test(1) {runScript(s1); i shouldBe __`2`}
+      // test(2) {runScript(s2); i shouldBe __`2`}
+      // test(3) {runScript(s3); i shouldBe __`201`}
+      // test(4) {runScript(s4); i shouldBe __`101`}
     }
 
   koan(2)(
