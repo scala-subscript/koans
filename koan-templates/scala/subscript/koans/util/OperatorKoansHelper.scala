@@ -5,6 +5,8 @@ import subscript.Predef._
 import subscript.objectalgebra._
 
 import subscript.vm._
+import subscript.vm.AAHappened
+import subscript.vm.model.callgraph.CallGraphNode
 
 import scala.collection.mutable.ListBuffer
 
@@ -108,8 +110,18 @@ trait OperatorKoansHelper {this: Matchers =>
       t.trigger
 
     noMessagesBeforeMe =
-      var flag = false
-      {!flag = here.scriptExecutor.msgQueue.collection.exists(_.node.index < here.index)!}      
-      while(flag)
-      sleep: 10
+      var target: CallGraphNode = null
+      @absorbAAHappened(target): [
+        var flag = false
+        {:flag = here.scriptExecutor.msgQueue.collection.filter(_.node.index < here.index).size > 1:}      
+        while(flag)
+        @{target = here}: {*Thread sleep 10*}
+      ]
+
+  def absorbAAHappened(target: => CallGraphNode)(implicit there: CallGraphNode) {
+    val se = there.scriptExecutor
+    se.msgHandlers.sInsert {
+      case AAHappened(n, c, _) if (n eq there) && (c eq target) => se.msgQueue.dequeue(Int.MinValue)
+    }
+  }
 }
