@@ -40,10 +40,11 @@ class AboutCodeFragments extends KoanSuite with OperatorKoansHelper {
         s3 = reset;  q & q
         s4 = reset;  q || r
 
-      test(1) {runScript(s1); i shouldBe __`2`}
-      test(2) {runScript(s2); i shouldBe __`2`}
-      test(3) {runScript(s3); i shouldBe __`201`}
-      test(4) {runScript(s4); i shouldBe __`101`}
+      // Commented out, see #17
+      // test(1) {runScript(s1); i shouldBe __`2`}
+      // test(2) {runScript(s2); i shouldBe __`2`}
+      // test(3) {runScript(s3); i shouldBe __`201`}
+      // test(4) {runScript(s4); i shouldBe __`101`}
     }
 
   koan(2)(
@@ -146,11 +147,11 @@ class AboutCodeFragments extends KoanSuite with OperatorKoansHelper {
     |
     """
   ) {
-
       var listeners = List[() => Unit]()
       def trigger   = listeners.foreach(_())
+
       def    addListener(f: ()=>Unit) {listeners ::= f}
-      def removeListener(f: ()=>Unit) {listeners.filter(elm => elm!=f)}
+      def removeListener(f: ()=>Unit) {listeners = listeners.filter(elm => elm ne f)}
 
       def installExecutionListener(node: subscript.vm.model.callgraph.CallGraphNode) = {
         val myListener =  {()=>node.codeExecutor.executeAA}
@@ -171,8 +172,8 @@ class AboutCodeFragments extends KoanSuite with OperatorKoansHelper {
         s2    = reset; some & {!trigger!} b {!trigger!} c {!trigger!}
 
       test(1) {runScript   (s1)     ; i shouldBe __`1`}
-//      test(2) {runWithInput(s2)(   ); i shouldBe __`1`}
-//      test(3) {runWithInput(s2)(b  ); i shouldBe __`2`}
-//      test(4) {runWithInput(s2)(b,c); i shouldBe __`3`}
+      test(2) {runWithInput(s2)(   ); i shouldBe __`1`}
+      test(3) {runWithInput(s2)(b  ); i shouldBe __`2`}
+      test(4) {runWithInput(s2)(b,c); i shouldBe __`3`}
     }
  }
