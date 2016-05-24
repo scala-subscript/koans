@@ -38,6 +38,10 @@ Alternatively you can specify which koans to skip:
 ```
 koans skip:Dataflow,EpsilonAndDelta
 ```
+Or you can edit the following file to comment out parts of the list of koans that will be executed:
+```
+koans/src/test/scala/PathToEnlightenment.scala
+```
 
 Use `show` instead of `koans` to receive clues about errors:
 ```
