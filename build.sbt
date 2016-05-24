@@ -2,7 +2,7 @@ import complete.DefaultParsers._
 
 scalaVersion := "2.11.7"
 resolvers += Resolver.sonatypeRepo("snapshots")
-libraryDependencies += "org.subscript-lang" %% "subscript-swing" % "3.0.3"
+libraryDependencies += "org.subscript-lang" %% "subscript-swing" % "3.0.4"
 SubscriptSbt.projectSettings
 
 libraryDependencies += "org.scalactic" %% "scalactic" % "2.2.6"

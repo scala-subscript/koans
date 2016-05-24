@@ -35,7 +35,7 @@ class AboutDataflow extends KoanSuite {
   ) {
     script..
       s(lhs: Script[Any]) = lhs ~~(x: Int)~~> ^(x + 2)
-                                  +~/~(e: RuntimeException)~~> ^"Exception happened!"
+                              +~/~(e: RuntimeException)~~> ^"Exception happened!"
 
       s1 = ^3
       s2 = {!throw new RuntimeException!}
@@ -70,6 +70,7 @@ class AboutDataflow extends KoanSuite {
     | Dataflow map is like dataflow; the difference being that
     | the right hand side is a Scala value term, that becomes the
     | result value of the parent script.
+    | BTW The normal dataflow may as well be named `dataflow flatmap`.
     """
   ) {
     script s = {!1!} ~~(x: Int)~~^(x*2)
@@ -83,7 +84,7 @@ class AboutDataflow extends KoanSuite {
     """
   ) {
     script s(lhs: Script[Any]) = lhs ~~(x: Int   )~~^(x*2)
-                                        +~~(x: Double)~~^(x*3)
+                                    +~~(x: Double)~~^(x*3)
 
     test(1) {runScript(s([^2  ])).$ shouldBe Success(__`4`)}
     test(2) {runScript(s([^2.0])).$ shouldBe Success(__`6.0`)}

@@ -114,17 +114,21 @@ class AboutAdvancedSyntax extends KoanSuite {
     | Now you also may call normal Scala methods that way, even with the colon syntax.
     | And you may even have other Scala expression terms, that is, expressions without
     | prefix, infix and postfix calls (such as `!x`, `x+y`, `1 to 10`).
-    | So Scala literals (`1`, `2.0`, `'c'`, `"s"`, true, false) are also supported,
-    | and Scala expressions between parentheses, such as `(a+2*b),
-    | and statement sequences between braces, such as `{t;u}`.
     |
-    | But what does it all mean? That depends on the type of the Scala expression:
+    | So the following are also supported:
+    |
+    | - Scala literals (`1`, `2.0`, `'c'`, `"s"`, `true`, `false`)
+    | - Scala expressions between parentheses, such as `(a+2*b)`
+    | - statement sequences between braces, such as `{t;u}`
+    | - variables and values
+    |
+    | But what does it all mean? That depends on the type of such a Scala expression:
     |
     | - case Script[T] => a script call
     | - case Unit      => a method call in a tiny code fragment
-    | - else there should be an implicit conversion in scope to one of the previous types; that conversion applies
+    | - else there should be an implicit conversion in scope to one of the previous 2 types; that conversion applies
     |
-    | And an implicit conversion to type Script is possible using an `implicit script`.
+    | An implicit conversion to type Script is possible using an `implicit script`.
     |
     | This way SubScript rivals the conciseness of grammar description languages such as BNF and YACC.
     """
@@ -143,6 +147,7 @@ class AboutAdvancedSyntax extends KoanSuite {
       script..
 
       //s = 1 'c' true "ok" TBD; implicit conversion to Unit in scripts not yet supported
+
         s = true "ok"
 
 //      test(1) {runScript(s); a0 shouldBe __`1`}   TBD
